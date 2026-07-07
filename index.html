@@ -3,23 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quiz Statistica — Preparazione Esame</title>
+<title>Quiz Pegaso — Preparazione Esami</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#1B2A4A;
-    --navy-light:#2C3E63;
-    --paper:#F7F3EA;
-    --paper-dim:#EFE9DA;
-    --amber:#E8A33D;
-    --amber-dark:#C7822A;
-    --ink:#232323;
-    --ink-soft:#5A5A52;
-    --correct:#5E8C6A;
-    --correct-bg:#E4EEE2;
-    --wrong:#B85450;
-    --wrong-bg:#F5E3E0;
+    --navy:#1B2A4A; --navy-light:#2C3E63;
+    --paper:#F7F3EA; --paper-dim:#EFE9DA;
+    --amber:#E8A33D; --amber-dark:#C7822A;
+    --ink:#232323; --ink-soft:#5A5A52;
+    --correct:#5E8C6A; --correct-bg:#E4EEE2;
+    --wrong:#B85450; --wrong-bg:#F5E3E0;
     --rule: rgba(27,42,74,0.15);
   }
   *{box-sizing:border-box;}
@@ -29,18 +23,11 @@
     background-image:
       radial-gradient(circle at 10% 0%, rgba(232,163,61,0.08), transparent 40%),
       repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 32px);
-    color:var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    padding:32px 16px 60px;
+    color:var(--ink); font-family:'IBM Plex Sans', sans-serif;
+    min-height:100vh; display:flex; justify-content:center; padding:32px 16px 60px;
   }
-  .app{ width:100%; max-width:920px; }
-  header.top{
-    display:flex; align-items:baseline; justify-content:space-between;
-    color:var(--paper); margin-bottom:22px; flex-wrap:wrap; gap:8px;
-  }
+  .app{ width:100%; max-width:940px; }
+  header.top{ display:flex; align-items:baseline; justify-content:space-between; color:var(--paper); margin-bottom:22px; flex-wrap:wrap; gap:8px; }
   header.top .brand{ font-family:'Fraunces', serif; font-weight:600; font-size:1.7rem; letter-spacing:-0.01em; }
   header.top .brand em{ color:var(--amber); font-style:normal; }
   header.top .subtitle{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:rgba(247,243,234,0.65); letter-spacing:0.02em; }
@@ -48,50 +35,29 @@
   .layout{ display:grid; grid-template-columns: 1fr 220px; gap:20px; align-items:start; }
   @media (max-width: 720px){ .layout{ grid-template-columns: 1fr; } .stats-panel{ order:2; } }
 
-  .card{
-    background:var(--paper); border-radius:4px;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 12px 28px rgba(0,0,0,0.28);
-    position:relative; overflow:hidden;
-  }
-  .card::before{
-    content:""; position:absolute; top:0; left:0; right:0; height:5px;
-    background:linear-gradient(90deg, var(--amber), var(--amber-dark));
-  }
+  .card{ background:var(--paper); border-radius:4px; box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 12px 28px rgba(0,0,0,0.28); position:relative; overflow:hidden; }
+  .card::before{ content:""; position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg, var(--amber), var(--amber-dark)); }
 
   .progress-wrap{ padding:20px 28px 0; }
   .progress-top-row{ display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
   .progress-track{ position:relative; height:8px; background:var(--paper-dim); border-radius:99px; margin-top:6px; overflow:hidden; }
   .progress-fill{ position:absolute; top:0; left:0; bottom:0; background:var(--navy); border-radius:99px; transition:width 0.35s ease; }
-  .progress-fill.infinite{
-    width:35% !important;
-    background:linear-gradient(90deg, transparent, var(--amber), transparent);
-    animation: slide 1.4s linear infinite;
-  }
+  .progress-fill.infinite{ width:35% !important; background:linear-gradient(90deg, transparent, var(--amber), transparent); animation: slide 1.4s linear infinite; }
   @keyframes slide{ 0%{ transform:translateX(-120%);} 100%{ transform:translateX(340%);} }
   .progress-label{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.06em; }
-  .stop-link{
-    font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:var(--amber-dark);
-    background:none; border:none; cursor:pointer; text-decoration:underline; letter-spacing:0.03em; padding:0;
-  }
+  .stop-link{ font-family:'IBM Plex Mono', monospace; font-size:0.7rem; color:var(--amber-dark); background:none; border:none; cursor:pointer; text-decoration:underline; letter-spacing:0.03em; padding:0; }
 
   .question-area{ padding:26px 28px 28px; }
-  .q-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--amber-dark); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; display:flex; gap:8px; align-items:center; }
+  .q-eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--amber-dark); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
   .q-eyebrow .topic{ background:var(--navy); color:var(--paper); padding:2px 8px; border-radius:99px; font-size:0.68rem; }
-  .q-text{ font-family:'Fraunces', serif; font-weight:600; font-size:1.28rem; line-height:1.45; color:var(--navy); margin:0 0 22px; }
+  .q-eyebrow .subj{ color:var(--ink-soft); }
+  .q-text{ font-family:'Fraunces', serif; font-weight:600; font-size:1.26rem; line-height:1.45; color:var(--navy); margin:0 0 22px; }
 
   .options{ display:flex; flex-direction:column; gap:10px; }
-  .option{
-    display:flex; align-items:flex-start; gap:12px; text-align:left; padding:13px 16px; border-radius:6px;
-    border:1.5px solid var(--rule); background:#fff; cursor:pointer; font-family:'IBM Plex Sans', sans-serif;
-    font-size:0.98rem; color:var(--ink); transition: border-color .15s ease, background .15s ease;
-  }
+  .option{ display:flex; align-items:flex-start; gap:12px; text-align:left; padding:13px 16px; border-radius:6px; border:1.5px solid var(--rule); background:#fff; cursor:pointer; font-family:'IBM Plex Sans', sans-serif; font-size:0.98rem; color:var(--ink); transition: border-color .15s ease, background .15s ease; }
   .option:hover:not(:disabled){ border-color:var(--amber); background:#FFFCF5; }
   .option:disabled{ cursor:default; }
-  .option .box{
-    flex:0 0 22px; width:22px; height:22px; border:1.5px solid var(--navy); border-radius:4px;
-    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace;
-    font-size:0.72rem; font-weight:600; color:var(--navy); margin-top:1px; flex-shrink:0;
-  }
+  .option .box{ flex:0 0 22px; width:22px; height:22px; border:1.5px solid var(--navy); border-radius:4px; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; font-weight:600; color:var(--navy); margin-top:1px; flex-shrink:0; }
   .option.correct{ background:var(--correct-bg); border-color:var(--correct); }
   .option.correct .box{ background:var(--correct); border-color:var(--correct); color:#fff; }
   .option.wrong{ background:var(--wrong-bg); border-color:var(--wrong); }
@@ -102,11 +68,7 @@
   .explain strong{ color:var(--navy); }
 
   .controls{ display:flex; justify-content:flex-end; margin-top:22px; }
-  button.next{
-    font-family:'IBM Plex Mono', monospace; font-size:0.85rem; font-weight:600; letter-spacing:0.02em;
-    background:var(--navy); color:var(--paper); border:none; padding:11px 22px; border-radius:4px; cursor:pointer;
-    opacity:0; pointer-events:none; transition:opacity .2s ease, background .15s ease;
-  }
+  button.next{ font-family:'IBM Plex Mono', monospace; font-size:0.85rem; font-weight:600; letter-spacing:0.02em; background:var(--navy); color:var(--paper); border:none; padding:11px 22px; border-radius:4px; cursor:pointer; opacity:0; pointer-events:none; transition:opacity .2s ease, background .15s ease; }
   button.next.show{ opacity:1; pointer-events:auto; }
   button.next:hover{ background:var(--navy-light); }
 
@@ -122,8 +84,8 @@
   .result .big{ font-family:'Fraunces', serif; font-size:3.2rem; font-weight:700; color:var(--navy); margin:0; line-height:1; }
   .result .big span{ color:var(--amber-dark); }
   .result .verdict{ font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.06em; margin:10px 0 28px; }
-  .result-actions{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-  .result-actions button{ font-family:'IBM Plex Mono', monospace; font-size:0.85rem; font-weight:600; padding:11px 20px; border-radius:4px; cursor:pointer; border:1.5px solid var(--navy); }
+  .result-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; }
+  .result-actions button{ font-family:'IBM Plex Mono', monospace; font-size:0.82rem; font-weight:600; padding:11px 18px; border-radius:4px; cursor:pointer; border:1.5px solid var(--navy); }
   .btn-primary{ background:var(--navy); color:var(--paper); }
   .btn-primary:hover{ background:var(--navy-light); }
   .btn-secondary{ background:transparent; color:var(--navy); }
@@ -141,12 +103,21 @@
   .start-screen{ padding:40px 32px; text-align:center; }
   .start-screen h2{ font-family:'Fraunces', serif; font-size:1.6rem; color:var(--navy); margin:0 0 10px; }
   .start-screen p{ color:var(--ink-soft); font-size:0.95rem; max-width:560px; margin:0 auto 26px; line-height:1.55; }
+
+  .back-row{ text-align:left; margin-bottom:16px; }
+  .back-link{ font-family:'IBM Plex Mono', monospace; font-size:0.75rem; color:var(--amber-dark); background:none; border:none; cursor:pointer; text-decoration:underline; padding:0; }
+
+  .subject-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; max-width:600px; margin:0 auto 10px; }
+  @media (max-width:560px){ .subject-grid{ grid-template-columns:1fr; } }
+  .subject-card{ font-family:'IBM Plex Sans', sans-serif; border:1.5px solid var(--rule); background:#fff; border-radius:10px; padding:18px 14px; cursor:pointer; text-align:center; transition:border-color .15s ease, transform .1s ease; }
+  .subject-card:hover{ border-color:var(--amber-dark); transform:translateY(-2px); }
+  .subject-icon{ display:block; font-size:1.9rem; margin-bottom:8px; }
+  .subject-name{ display:block; font-family:'Fraunces', serif; font-weight:600; color:var(--navy); font-size:1rem; margin-bottom:4px; line-height:1.25; }
+  .subject-count{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.68rem; color:var(--ink-soft); }
+
   .mode-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; max-width:520px; margin:0 auto 26px; }
   @media (max-width:520px){ .mode-grid{ grid-template-columns:1fr; } }
-  .mode-btn{
-    font-family:'IBM Plex Mono', monospace; font-size:0.78rem; padding:14px 12px; border-radius:8px;
-    border:1.5px solid var(--rule); background:#fff; cursor:pointer; color:var(--ink-soft); text-align:left; line-height:1.4;
-  }
+  .mode-btn{ font-family:'IBM Plex Mono', monospace; font-size:0.78rem; padding:14px 12px; border-radius:8px; border:1.5px solid var(--rule); background:#fff; cursor:pointer; color:var(--ink-soft); text-align:left; line-height:1.4; }
   .mode-btn b{ display:block; font-family:'IBM Plex Sans',sans-serif; font-size:0.92rem; color:var(--navy); margin-bottom:3px; }
   .mode-btn.active{ border-color:var(--amber-dark); background:var(--paper-dim); }
   .mode-btn.active b{ color:var(--amber-dark); }
@@ -155,8 +126,8 @@
 <body>
 <div class="app">
   <header class="top">
-    <div class="brand">Quiz <em>Statistica</em></div>
-    <div class="subtitle">banca da 45 domande + generatore infinito di esercizi numerici</div>
+    <div class="brand">Quiz <em>Pegaso</em></div>
+    <div class="subtitle" id="subtitleText">6 materie · banca fissa + esercizi generati</div>
   </header>
 
   <div class="layout">
@@ -176,9 +147,219 @@
 
 <script>
 /* =========================================================
-   BANCA DOMANDE FISSE — concetti teorici
+   HELPER NUMERICI E GENERICI
    ========================================================= */
-const QUESTIONS = [
+function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function randChoice(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+function fmt(v){ return (Math.round(v*100)/100).toString().replace(/\.0+$/,'').replace(/(\.\d*?)0+$/,'$1').replace(/\.$/,''); }
+
+function buildOptions(correctValue, distractorFn, formatFn){
+  formatFn = formatFn || fmt;
+  const correctFormatted = formatFn(correctValue);
+  const wrongs = [];
+  let attempts = 0;
+  while(wrongs.length < 3 && attempts < 60){
+    attempts++;
+    const cand = formatFn(distractorFn());
+    if(cand !== correctFormatted && !wrongs.includes(cand)) wrongs.push(cand);
+  }
+  let pad = 1;
+  while(wrongs.length < 3){
+    const filler = formatFn(Number(correctValue) + pad * (Math.random()<0.5?-1:1) * (Math.abs(Number(correctValue))*0.15 + pad));
+    if(filler !== correctFormatted && !wrongs.includes(filler)) wrongs.push(filler);
+    pad++;
+  }
+  const all = shuffle([correctFormatted, ...wrongs]);
+  return { options: all, correct: all.indexOf(correctFormatted) };
+}
+
+/* =========================================================
+   GENERATORE PROCEDURALE — solo per Statistica
+   ========================================================= */
+const STAT_GENERATORS = [
+  function genMean(){
+    const n = randInt(5,7);
+    const data = Array.from({length:n}, ()=>randInt(2,60));
+    const sum = data.reduce((a,b)=>a+b,0);
+    const mean = sum/n;
+    const sorted = [...data].sort((a,b)=>a-b);
+    const median = n%2 ? sorted[(n-1)/2] : (sorted[n/2-1]+sorted[n/2])/2;
+    const {options, correct} = buildOptions(mean, ()=>{
+      const c = Math.random();
+      if(c<0.34) return median;
+      if(c<0.67) return sum;
+      return mean + (Math.random()<0.5?1:-1)*randInt(1,8);
+    });
+    return { topic:"Calcolo — Media", q:`Calcola la media aritmetica del seguente insieme di dati: {${data.join(", ")}}`,
+      options, correct, explain:`Media = somma dei valori (${sum}) / numerosità (${n}) = ${fmt(mean)}.` };
+  },
+  function genMedian(){
+    const n = randChoice([5,7]);
+    const data = Array.from({length:n}, ()=>randInt(1,99));
+    const sorted = [...data].sort((a,b)=>a-b);
+    const median = sorted[(n-1)/2];
+    const mean = data.reduce((a,b)=>a+b,0)/n;
+    const {options, correct} = buildOptions(median, ()=>{
+      const c = Math.random();
+      if(c<0.4) return mean;
+      if(c<0.7) return sorted[randInt(0,n-1)];
+      return median + randInt(-10,10);
+    });
+    return { topic:"Calcolo — Mediana", q:`Dato il seguente insieme di dati (non ordinato): {${data.join(", ")}}, qual è la mediana?`,
+      options, correct, explain:`Ordinando: {${sorted.join(", ")}}. Con n=${n} (dispari) la mediana è il valore centrale: ${median}.` };
+  },
+  function genMode(){
+    const repeated = randInt(1,30);
+    const poolSet = new Set();
+    while(poolSet.size < 6){ const v = randInt(1,30); if(v!==repeated) poolSet.add(v); }
+    const data = shuffle([...poolSet, repeated, repeated]);
+    const {options, correct} = buildOptions(repeated, ()=>{
+      const c = Math.random();
+      if(c<0.5) return data[randInt(0,data.length-1)];
+      return repeated + (Math.random()<0.5?1:-1)*randInt(1,5);
+    });
+    return { topic:"Calcolo — Moda", q:`Qual è la moda del seguente insieme di dati? {${data.join(", ")}}`,
+      options, correct, explain:`Il valore ${repeated} compare 2 volte, più di ogni altro valore (1 volta ciascuno).` };
+  },
+  function genRange(){
+    const n = randInt(6,8);
+    const data = Array.from({length:n}, ()=>randInt(5,95));
+    const max = Math.max(...data), min = Math.min(...data);
+    const range = max-min;
+    const {options, correct} = buildOptions(range, ()=>{
+      const c = Math.random();
+      if(c<0.4) return max+min;
+      if(c<0.7) return range + (Math.random()<0.5?1:-1)*randInt(1,10);
+      return max;
+    });
+    return { topic:"Calcolo — Range", q:`Calcola il campo di variazione (range) del seguente insieme di dati: {${data.join(", ")}}`,
+      options, correct, explain:`Range = massimo (${max}) − minimo (${min}) = ${range}.` };
+  },
+  function genVariance(){
+    const n = randInt(4,5);
+    const data = Array.from({length:n}, ()=>randInt(2,20));
+    const mean = data.reduce((a,b)=>a+b,0)/n;
+    const sumSq = data.reduce((acc,v)=>acc+Math.pow(v-mean,2),0);
+    const variance = sumSq/n;
+    const {options, correct} = buildOptions(variance, ()=>{
+      const c = Math.random();
+      if(c<0.4) return sumSq/(n-1);
+      if(c<0.7) return Math.sqrt(variance);
+      return variance + (Math.random()*4-2);
+    });
+    return { topic:"Calcolo — Varianza", q:`Calcola la varianza di popolazione (denominatore N) del seguente insieme di dati: {${data.join(", ")}}`,
+      options, correct, explain:`Media = ${fmt(mean)}. Varianza = Σ(xᵢ−media)² / N = ${fmt(sumSq)} / ${n} = ${fmt(variance)}.` };
+  },
+  function genUrn(){
+    const palette = ["rosse","blu","verdi","gialle","nere"];
+    const chosen = shuffle(palette).slice(0,3);
+    const counts = chosen.map(()=>randInt(2,15));
+    const total = counts.reduce((a,b)=>a+b,0);
+    const idx = randInt(0,2);
+    const pct = (counts[idx]/total)*100;
+    const {options, correct} = buildOptions(pct, ()=>{
+      const c = Math.random();
+      if(c<0.4) return (counts[idx]/(total-counts[idx]))*100;
+      if(c<0.7) return ((total-counts[idx])/total)*100;
+      return pct + (Math.random()<0.5?1:-1)*randInt(3,15);
+    }, v=>fmt(v)+"%");
+    return { topic:"Probabilità", q:`Un'urna contiene ${counts[0]} palline ${chosen[0]}, ${counts[1]} palline ${chosen[1]} e ${counts[2]} palline ${chosen[2]}. Estraendo una pallina a caso, qual è la probabilità che sia ${chosen[idx]}?`,
+      options, correct, explain:`Totale palline = ${total}. P(${chosen[idx]}) = ${counts[idx]}/${total} ≈ ${fmt(pct)}%.` };
+  },
+  function genDice(){
+    const k = randInt(1,5);
+    const pct = ((6-k)/6)*100;
+    const {options, correct} = buildOptions(pct, ()=>{
+      const c = Math.random();
+      if(c<0.4) return (k/6)*100;
+      if(c<0.7) return ((6-k+1)/6)*100;
+      return pct + (Math.random()<0.5?1:-1)*randInt(3,15);
+    }, v=>fmt(v)+"%");
+    return { topic:"Probabilità", q:`Lanciando un dado equilibrato a 6 facce, qual è la probabilità di ottenere un numero maggiore di ${k}?`,
+      options, correct, explain:`I valori maggiori di ${k} sono ${6-k} su 6: P = (6−${k})/6 ≈ ${fmt(pct)}%.` };
+  },
+  function genZ(){
+    const mu = randInt(40,100);
+    const sigma = randInt(5,20);
+    const x = mu + randInt(-3,3)*sigma + randInt(-4,4);
+    const z = (x-mu)/sigma;
+    const {options, correct} = buildOptions(z, ()=>{
+      const c = Math.random();
+      if(c<0.4) return (mu-x)/sigma;
+      if(c<0.7) return (x-mu)/mu;
+      return z + (Math.random()*1.6-0.8);
+    });
+    return { topic:"Calcolo — Punteggio z", q:`Una variabile ha media μ = ${mu} e deviazione standard σ = ${sigma}. Qual è il punteggio z per x = ${x}?`,
+      options, correct, explain:`z = (x − μ) / σ = (${x} − ${mu}) / ${sigma} = ${fmt(z)}.` };
+  },
+  function genEmpirical(){
+    const mu = randInt(50,100);
+    const sigma = randInt(5,15);
+    const k = randChoice([1,2,3]);
+    const pctMap = {1:68,2:95,3:99.7};
+    const lower = mu-k*sigma, upper = mu+k*sigma;
+    const correctVal = pctMap[k];
+    const {options, correct} = buildOptions(correctVal, ()=>{
+      const others = Object.values(pctMap).filter(v=>v!==correctVal).concat([50,75,90]);
+      return randChoice(others);
+    }, v=>v+"%");
+    return { topic:"Distribuzione Normale", q:`In una Normale con μ = ${mu} e σ = ${sigma}, che percentuale di dati ricade in [${lower}, ${upper}] (μ ± ${k}σ)?`,
+      options, correct, explain:`Per la regola empirica, circa il ${correctVal}% dei dati ricade entro μ ± ${k}σ.` };
+  },
+  function genRegression(){
+    const a = randInt(1,20);
+    const b = randInt(1,10) * (Math.random()<0.5?1:-1);
+    const x = randInt(2,20);
+    const y = a + b*x;
+    const {options, correct} = buildOptions(y, ()=>{
+      const c = Math.random();
+      if(c<0.4) return a - b*x;
+      if(c<0.7) return a*x + b;
+      return y + (Math.random()<0.5?1:-1)*randInt(2,15);
+    });
+    const bStr = b>=0 ? `+ ${b}` : `− ${Math.abs(b)}`;
+    return { topic:"Regressione lineare", q:`Data la retta di regressione ŷ = ${a} ${bStr}x, qual è il valore previsto per x = ${x}?`,
+      options, correct, explain:`ŷ = ${a} + (${b})·(${x}) = ${a} + ${b*x} = ${y}.` };
+  },
+  function genCV(){
+    const mean = randInt(20,100);
+    const sd = randInt(2, Math.max(3,Math.round(mean*0.5)));
+    const cv = (sd/mean)*100;
+    const {options, correct} = buildOptions(cv, ()=>{
+      const c = Math.random();
+      if(c<0.4) return (mean/sd)*100;
+      if(c<0.7) return sd/mean;
+      return cv + (Math.random()<0.5?1:-1)*randInt(3,15);
+    }, v=>fmt(v)+"%");
+    return { topic:"Calcolo — Coeff. di variazione", q:`Una distribuzione ha media = ${mean} e deviazione standard = ${sd}. Calcola il coefficiente di variazione (CV).`,
+      options, correct, explain:`CV = (deviazione standard / media) × 100 = (${sd} / ${mean}) × 100 ≈ ${fmt(cv)}%.` };
+  },
+  function genCI(){
+    const mean = randInt(50,150);
+    const sigma = randInt(5,25);
+    const n = randChoice([25,36,49,64,100]);
+    const z = 1.96;
+    const margin = z*sigma/Math.sqrt(n);
+    const {options, correct} = buildOptions(margin, ()=>{
+      const c = Math.random();
+      if(c<0.4) return z*sigma/n;
+      if(c<0.7) return sigma/Math.sqrt(n);
+      return margin + (Math.random()*2-1);
+    });
+    return { topic:"Intervallo di confidenza", q:`Da un campione di n = ${n}, con σ = ${sigma}, calcola il margine di errore per un IC al 95% (z = 1.96) attorno alla media campionaria (μ = ${mean}).`,
+      options, correct, explain:`Margine di errore = z · σ/√n = 1.96 × ${sigma}/√${n} = 1.96 × ${fmt(sigma/Math.sqrt(n))} ≈ ${fmt(margin)}.` };
+  }
+];
+
+/* =========================================================
+   BANCHE DOMANDE FISSE PER MATERIA
+   ========================================================= */
+const Q_STATISTICA = [
   {topic:"Statistica descrittiva", q:"La moda di una distribuzione di frequenze è:", options:["Il valore che occupa la posizione centrale","Il valore che si presenta con la frequenza più alta","La somma dei valori divisa per il numero di osservazioni","La differenza tra il valore massimo e minimo"], correct:1, explain:"La moda è il valore (o la classe) con la frequenza assoluta più elevata nella distribuzione."},
   {topic:"Statistica descrittiva", q:"La mediana di un insieme di dati ordinati è:", options:["La media aritmetica dei dati","Il valore centrale che divide i dati in due metà","Il valore più frequente","Lo scarto quadratico medio"], correct:1, explain:"La mediana è il valore che lascia il 50% delle osservazioni sotto e il 50% sopra, una volta ordinati i dati."},
   {topic:"Statistica descrittiva", q:"Quale indice di posizione è più sensibile ai valori estremi (outlier)?", options:["La mediana","La moda","La media aritmetica","Il primo quartile"], correct:2, explain:"La media aritmetica tiene conto di tutti i valori, quindi risente fortemente della presenza di valori anomali."},
@@ -230,233 +411,471 @@ const QUESTIONS = [
   {topic:"Concetti generali", q:"Il diagramma a scatola (box-plot) è utile principalmente per:", options:["Mostrare la relazione causale tra due variabili","Visualizzare quartili, mediana ed eventuali outlier di una distribuzione","Calcolare la media aritmetica","Rappresentare solo dati categoriali"], correct:1, explain:"Il box-plot sintetizza Q1, mediana, Q3, i baffi (whiskers) e gli eventuali valori anomali di una distribuzione."}
 ];
 
-/* =========================================================
-   HELPER NUMERICI
-   ========================================================= */
-function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
-function randChoice(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-function shuffle(arr){
-  const a = arr.slice();
-  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
-  return a;
-}
-function fmt(v){ return (Math.round(v*100)/100).toString().replace(/\.0+$/,'').replace(/(\.\d*?)0+$/,'$1').replace(/\.$/,''); }
-
-function buildOptions(correctValue, distractorFn, formatFn){
-  formatFn = formatFn || fmt;
-  const correctFormatted = formatFn(correctValue);
-  const wrongs = [];
-  let attempts = 0;
-  while(wrongs.length < 3 && attempts < 60){
-    attempts++;
-    const cand = formatFn(distractorFn());
-    if(cand !== correctFormatted && !wrongs.includes(cand)) wrongs.push(cand);
-  }
-  let pad = 1;
-  while(wrongs.length < 3){
-    const filler = formatFn(Number(correctValue) + pad * (Math.random()<0.5?-1:1) * (Math.abs(Number(correctValue))*0.15 + pad));
-    if(filler !== correctFormatted && !wrongs.includes(filler)) wrongs.push(filler);
-    pad++;
-  }
-  const all = shuffle([correctFormatted, ...wrongs]);
-  return { options: all, correct: all.indexOf(correctFormatted) };
-}
-
-/* =========================================================
-   GENERATORE PROCEDURALE — esercizi numerici infiniti
-   ========================================================= */
-const GENERATORS = [
-
-  function genMean(){
-    const n = randInt(5,7);
-    const data = Array.from({length:n}, ()=>randInt(2,60));
-    const sum = data.reduce((a,b)=>a+b,0);
-    const mean = sum/n;
-    const sorted = [...data].sort((a,b)=>a-b);
-    const median = n%2 ? sorted[(n-1)/2] : (sorted[n/2-1]+sorted[n/2])/2;
-    const {options, correct} = buildOptions(mean, ()=>{
-      const c = Math.random();
-      if(c<0.34) return median;
-      if(c<0.67) return sum;
-      return mean + (Math.random()<0.5?1:-1)*randInt(1,8);
-    });
-    return { topic:"Calcolo — Media", q:`Calcola la media aritmetica del seguente insieme di dati: {${data.join(", ")}}`,
-      options, correct, explain:`Media = somma dei valori (${sum}) / numerosità (${n}) = ${fmt(mean)}.` };
-  },
-
-  function genMedian(){
-    const n = randChoice([5,7]);
-    const data = Array.from({length:n}, ()=>randInt(1,99));
-    const sorted = [...data].sort((a,b)=>a-b);
-    const median = sorted[(n-1)/2];
-    const mean = data.reduce((a,b)=>a+b,0)/n;
-    const {options, correct} = buildOptions(median, ()=>{
-      const c = Math.random();
-      if(c<0.4) return mean;
-      if(c<0.7) return sorted[randInt(0,n-1)];
-      return median + randInt(-10,10);
-    });
-    return { topic:"Calcolo — Mediana", q:`Dato il seguente insieme di dati (non ordinato): {${data.join(", ")}}, qual è la mediana?`,
-      options, correct, explain:`Ordinando: {${sorted.join(", ")}}. Con n=${n} (dispari) la mediana è il valore centrale: ${median}.` };
-  },
-
-  function genMode(){
-    const repeated = randInt(1,30);
-    const poolSet = new Set();
-    while(poolSet.size < 6){ const v = randInt(1,30); if(v!==repeated) poolSet.add(v); }
-    const data = shuffle([...poolSet, repeated, repeated]);
-    const {options, correct} = buildOptions(repeated, ()=>{
-      const c = Math.random();
-      if(c<0.5) return data[randInt(0,data.length-1)];
-      return repeated + (Math.random()<0.5?1:-1)*randInt(1,5);
-    });
-    return { topic:"Calcolo — Moda", q:`Qual è la moda del seguente insieme di dati? {${data.join(", ")}}`,
-      options, correct, explain:`Il valore ${repeated} compare 2 volte, più di ogni altro valore nella serie (che compaiono 1 volta ciascuno).` };
-  },
-
-  function genRange(){
-    const n = randInt(6,8);
-    const data = Array.from({length:n}, ()=>randInt(5,95));
-    const max = Math.max(...data), min = Math.min(...data);
-    const range = max-min;
-    const {options, correct} = buildOptions(range, ()=>{
-      const c = Math.random();
-      if(c<0.4) return max+min;
-      if(c<0.7) return range + (Math.random()<0.5?1:-1)*randInt(1,10);
-      return max;
-    });
-    return { topic:"Calcolo — Range", q:`Calcola il campo di variazione (range) del seguente insieme di dati: {${data.join(", ")}}`,
-      options, correct, explain:`Range = massimo (${max}) − minimo (${min}) = ${range}.` };
-  },
-
-  function genVariance(){
-    const n = randInt(4,5);
-    const data = Array.from({length:n}, ()=>randInt(2,20));
-    const mean = data.reduce((a,b)=>a+b,0)/n;
-    const sumSq = data.reduce((acc,v)=>acc+Math.pow(v-mean,2),0);
-    const variance = sumSq/n;
-    const {options, correct} = buildOptions(variance, ()=>{
-      const c = Math.random();
-      if(c<0.4) return sumSq/(n-1);
-      if(c<0.7) return Math.sqrt(variance);
-      return variance + (Math.random()*4-2);
-    });
-    return { topic:"Calcolo — Varianza", q:`Calcola la varianza di popolazione (denominatore N) del seguente insieme di dati: {${data.join(", ")}}`,
-      options, correct, explain:`Media = ${fmt(mean)}. Varianza = Σ(xᵢ−media)² / N = ${fmt(sumSq)} / ${n} = ${fmt(variance)}.` };
-  },
-
-  function genUrn(){
-    const palette = ["rosse","blu","verdi","gialle","nere"];
-    const chosen = shuffle(palette).slice(0,3);
-    const counts = chosen.map(()=>randInt(2,15));
-    const total = counts.reduce((a,b)=>a+b,0);
-    const idx = randInt(0,2);
-    const pct = (counts[idx]/total)*100;
-    const {options, correct} = buildOptions(pct, ()=>{
-      const c = Math.random();
-      if(c<0.4) return (counts[idx]/(total-counts[idx]))*100;
-      if(c<0.7) return ((total-counts[idx])/total)*100;
-      return pct + (Math.random()<0.5?1:-1)*randInt(3,15);
-    }, v=>fmt(v)+"%");
-    return { topic:"Probabilità", q:`Un'urna contiene ${counts[0]} palline ${chosen[0]}, ${counts[1]} palline ${chosen[1]} e ${counts[2]} palline ${chosen[2]}. Estraendo una pallina a caso, qual è la probabilità che sia ${chosen[idx]}?`,
-      options, correct, explain:`Totale palline = ${total}. P(${chosen[idx]}) = ${counts[idx]}/${total} ≈ ${fmt(pct)}%.` };
-  },
-
-  function genDice(){
-    const k = randInt(1,5);
-    const pct = ((6-k)/6)*100;
-    const {options, correct} = buildOptions(pct, ()=>{
-      const c = Math.random();
-      if(c<0.4) return (k/6)*100;
-      if(c<0.7) return ((6-k+1)/6)*100;
-      return pct + (Math.random()<0.5?1:-1)*randInt(3,15);
-    }, v=>fmt(v)+"%");
-    return { topic:"Probabilità", q:`Lanciando un dado equilibrato a 6 facce, qual è la probabilità di ottenere un numero maggiore di ${k}?`,
-      options, correct, explain:`I valori maggiori di ${k} sono ${6-k} su 6: P = (6−${k})/6 ≈ ${fmt(pct)}%.` };
-  },
-
-  function genZ(){
-    const mu = randInt(40,100);
-    const sigma = randInt(5,20);
-    const x = mu + randInt(-3,3)*sigma + randInt(-4,4);
-    const z = (x-mu)/sigma;
-    const {options, correct} = buildOptions(z, ()=>{
-      const c = Math.random();
-      if(c<0.4) return (mu-x)/sigma;
-      if(c<0.7) return (x-mu)/mu;
-      return z + (Math.random()*1.6-0.8);
-    });
-    return { topic:"Calcolo — Punteggio z", q:`Una variabile ha media μ = ${mu} e deviazione standard σ = ${sigma}. Qual è il punteggio z per x = ${x}?`,
-      options, correct, explain:`z = (x − μ) / σ = (${x} − ${mu}) / ${sigma} = ${fmt(z)}.` };
-  },
-
-  function genEmpirical(){
-    const mu = randInt(50,100);
-    const sigma = randInt(5,15);
-    const k = randChoice([1,2,3]);
-    const pctMap = {1:68,2:95,3:99.7};
-    const lower = mu-k*sigma, upper = mu+k*sigma;
-    const correctVal = pctMap[k];
-    const {options, correct} = buildOptions(correctVal, ()=>{
-      const others = Object.values(pctMap).filter(v=>v!==correctVal).concat([50,75,90]);
-      return randChoice(others);
-    }, v=>v+"%");
-    return { topic:"Distribuzione Normale", q:`In una Normale con μ = ${mu} e σ = ${sigma}, che percentuale di dati ricade in [${lower}, ${upper}] (μ ± ${k}σ)?`,
-      options, correct, explain:`Per la regola empirica, circa il ${correctVal}% dei dati ricade entro μ ± ${k}σ.` };
-  },
-
-  function genRegression(){
-    const a = randInt(1,20);
-    const b = randInt(1,10) * (Math.random()<0.5?1:-1);
-    const x = randInt(2,20);
-    const y = a + b*x;
-    const {options, correct} = buildOptions(y, ()=>{
-      const c = Math.random();
-      if(c<0.4) return a - b*x;
-      if(c<0.7) return a*x + b;
-      return y + (Math.random()<0.5?1:-1)*randInt(2,15);
-    });
-    const bStr = b>=0 ? `+ ${b}` : `− ${Math.abs(b)}`;
-    return { topic:"Regressione lineare", q:`Data la retta di regressione ŷ = ${a} ${bStr}x, qual è il valore previsto per x = ${x}?`,
-      options, correct, explain:`ŷ = ${a} + (${b})·(${x}) = ${a} + ${b*x} = ${y}.` };
-  },
-
-  function genCV(){
-    const mean = randInt(20,100);
-    const sd = randInt(2, Math.max(3,Math.round(mean*0.5)));
-    const cv = (sd/mean)*100;
-    const {options, correct} = buildOptions(cv, ()=>{
-      const c = Math.random();
-      if(c<0.4) return (mean/sd)*100;
-      if(c<0.7) return sd/mean;
-      return cv + (Math.random()<0.5?1:-1)*randInt(3,15);
-    }, v=>fmt(v)+"%");
-    return { topic:"Calcolo — Coeff. di variazione", q:`Una distribuzione ha media = ${mean} e deviazione standard = ${sd}. Calcola il coefficiente di variazione (CV).`,
-      options, correct, explain:`CV = (deviazione standard / media) × 100 = (${sd} / ${mean}) × 100 ≈ ${fmt(cv)}%.` };
-  },
-
-  function genCI(){
-    const mean = randInt(50,150);
-    const sigma = randInt(5,25);
-    const n = randChoice([25,36,49,64,100]);
-    const z = 1.96;
-    const margin = z*sigma/Math.sqrt(n);
-    const {options, correct} = buildOptions(margin, ()=>{
-      const c = Math.random();
-      if(c<0.4) return z*sigma/n;
-      if(c<0.7) return sigma/Math.sqrt(n);
-      return margin + (Math.random()*2-1);
-    });
-    return { topic:"Intervallo di confidenza", q:`Da un campione di n = ${n}, con σ = ${sigma}, calcola il margine di errore per un IC al 95% (z = 1.96) attorno alla media campionaria (μ = ${mean}).`,
-      options, correct, explain:`Margine di errore = z · σ/√n = 1.96 × ${sigma}/√${n} = 1.96 × ${fmt(sigma/Math.sqrt(n))} ≈ ${fmt(margin)}.` };
-  }
+const Q_ECONOMIA_AZIENDALE = [
+  {topic:"Bilancio", q:"Il bilancio d'esercizio è composto principalmente da:", options:["Solo dallo Stato Patrimoniale","Stato Patrimoniale, Conto Economico e Nota Integrativa","Solo dal Conto Economico","Solo dal libro giornale"], correct:1, explain:"Il bilancio d'esercizio comprende Stato Patrimoniale, Conto Economico e Nota Integrativa (oltre al Rendiconto Finanziario per le imprese di maggiori dimensioni)."},
+  {topic:"Bilancio", q:"Lo Stato Patrimoniale rappresenta:", options:["Il risultato economico del periodo","La situazione patrimoniale e finanziaria dell'azienda in un dato momento","Solo i costi sostenuti nell'anno","Il flusso di cassa dell'impresa"], correct:1, explain:"Lo Stato Patrimoniale è un prospetto 'a un istante dato' che mostra attività, passività e patrimonio netto."},
+  {topic:"Bilancio", q:"Il Conto Economico misura:", options:["Il valore del magazzino","Il risultato economico (utile o perdita) di un periodo","La solidità patrimoniale dell'impresa","Il totale delle immobilizzazioni"], correct:1, explain:"Il Conto Economico contrappone costi e ricavi di competenza del periodo, determinando l'utile o la perdita d'esercizio."},
+  {topic:"Bilancio", q:"Nello Stato Patrimoniale, Attivo e Passivo (comprensivo del Patrimonio Netto) devono essere:", options:["Sempre diversi","Uguali (principio del pareggio contabile)","Indipendenti tra loro","Non comparabili"], correct:1, explain:"Per costruzione contabile, il totale dell'Attivo deve sempre coincidere con il totale di Passività più Patrimonio Netto."},
+  {topic:"Bilancio", q:"Il Patrimonio Netto rappresenta:", options:["Il totale dei debiti dell'impresa","La differenza tra attività e passività, ovvero i mezzi propri","Il fatturato annuo","Le rimanenze di magazzino"], correct:1, explain:"Il Patrimonio Netto è dato da Attività − Passività ed esprime i mezzi propri investiti nell'impresa."},
+  {topic:"Contabilità", q:"Il metodo della partita doppia si basa sul principio secondo cui:", options:["Ogni operazione genera un'unica registrazione","Ogni operazione genera una duplice registrazione in Dare e in Avere","Si registrano solo le entrate di cassa","Si registrano solo le operazioni a credito"], correct:1, explain:"La partita doppia richiede che ogni fatto di gestione sia rilevato con un addebito e un accredito di pari importo su conti diversi."},
+  {topic:"Contabilità", q:"L'ammortamento rappresenta:", options:["Il pagamento di un debito a rate","La ripartizione del costo di un bene pluriennale sulla sua vita utile","Un tipo di ricavo straordinario","Il valore di mercato di un bene"], correct:1, explain:"L'ammortamento imputa a ciascun esercizio la quota di costo di un bene durevole in relazione alla sua residua possibilità di utilizzo."},
+  {topic:"Contabilità", q:"Le immobilizzazioni sono:", options:["Beni destinati a rimanere durevolmente nell'organizzazione aziendale","Solo il denaro in cassa","Debiti verso i fornitori","Rimanenze di magazzino"], correct:0, explain:"Le immobilizzazioni (materiali, immateriali, finanziarie) sono elementi patrimoniali destinati a un utilizzo pluriennale nell'attività d'impresa."},
+  {topic:"Contabilità", q:"Le rimanenze di magazzino sono classificate nello Stato Patrimoniale come:", options:["Immobilizzazioni","Attivo circolante","Patrimonio netto","Passività a lungo termine"], correct:1, explain:"Le rimanenze fanno parte dell'attivo circolante, in quanto destinate alla vendita o al consumo nel breve periodo."},
+  {topic:"Indici di bilancio", q:"Il ROE (Return On Equity) misura:", options:["La redditività delle vendite","La redditività del capitale proprio","Il grado di indebitamento","La liquidità immediata"], correct:1, explain:"Il ROE è dato dal rapporto tra utile netto e patrimonio netto, ed esprime la redditività per gli azionisti/soci."},
+  {topic:"Indici di bilancio", q:"Il ROI (Return On Investment) misura:", options:["La redditività del capitale investito nella gestione operativa","La redditività fiscale","La solvibilità a breve termine","Il valore delle immobilizzazioni"], correct:0, explain:"Il ROI è il rapporto tra reddito operativo e capitale investito operativo, ed esprime l'efficienza della gestione caratteristica."},
+  {topic:"Indici di bilancio", q:"Il ROS (Return On Sales) è dato da:", options:["Utile operativo / Capitale investito","Utile operativo / Ricavi di vendita","Patrimonio netto / Totale attivo","Debiti / Patrimonio netto"], correct:1, explain:"Il ROS esprime la redditività delle vendite, calcolato come reddito operativo diviso i ricavi."},
+  {topic:"Indici di bilancio", q:"La leva finanziaria misura:", options:["L'effetto dell'indebitamento sulla redditività del capitale proprio","Il valore delle rimanenze","Il numero di dipendenti","La quota di ammortamento annuale"], correct:0, explain:"La leva finanziaria studia come l'indebitamento possa amplificare (in positivo o in negativo) il ROE rispetto al ROI."},
+  {topic:"Indici di bilancio", q:"La liquidità aziendale misura principalmente:", options:["La capacità dell'impresa di far fronte agli impegni a breve termine","La quota di mercato dell'impresa","Il valore del marchio","Gli investimenti in ricerca e sviluppo"], correct:0, explain:"Gli indici di liquidità (es. current ratio, quick ratio) valutano la capacità di onorare le passività correnti con le attività a breve."},
+  {topic:"Indici di bilancio", q:"La solvibilità di un'impresa misura:", options:["Solo la liquidità immediata","La capacità di far fronte a tutti gli impegni, a breve e a lungo termine","Il fatturato dell'ultimo trimestre","La produttività del lavoro"], correct:1, explain:"La solvibilità riguarda l'equilibrio finanziario complessivo dell'impresa, non solo quello di breve periodo."},
+  {topic:"Analisi dei costi", q:"I costi fissi sono costi che:", options:["Variano in proporzione diretta alla quantità prodotta","Non variano al variare della quantità prodotta nel breve periodo","Sono sempre pari a zero","Dipendono solo dal prezzo di vendita"], correct:1, explain:"I costi fissi (es. affitti, ammortamenti) restano costanti entro un certo intervallo di produzione nel breve periodo."},
+  {topic:"Analisi dei costi", q:"I costi variabili sono costi che:", options:["Restano sempre costanti","Variano in proporzione alla quantità prodotta","Non dipendono mai dalla produzione","Coincidono sempre con i costi fissi"], correct:1, explain:"I costi variabili (es. materie prime) crescono o diminuiscono in relazione al volume di produzione."},
+  {topic:"Analisi dei costi", q:"Il margine di contribuzione è calcolato come:", options:["Ricavi meno costi variabili","Ricavi meno costi fissi","Ricavi meno costi totali","Costi fissi più costi variabili"], correct:0, explain:"Il margine di contribuzione (ricavi − costi variabili) indica quanto residua per coprire i costi fissi e generare utile."},
+  {topic:"Analisi dei costi", q:"Il punto di pareggio (break-even point) è il livello di produzione/vendita in cui:", options:["I ricavi superano sempre i costi","I ricavi totali eguagliano i costi totali","I costi fissi sono pari a zero","L'utile è massimo"], correct:1, explain:"Nel punto di pareggio l'impresa non realizza né utile né perdita: ricavi totali = costi totali."},
+  {topic:"Efficienza e strategia", q:"L'efficacia aziendale si riferisce a:", options:["Il rapporto tra risorse impiegate e risultati ottenuti","La capacità di raggiungere gli obiettivi prefissati","Il costo unitario di produzione","La velocità di rotazione del magazzino"], correct:1, explain:"L'efficacia misura il grado di raggiungimento degli obiettivi, indipendentemente dalle risorse impiegate."},
+  {topic:"Efficienza e strategia", q:"L'efficienza aziendale si riferisce a:", options:["Il raggiungimento degli obiettivi a qualunque costo","Il miglior rapporto possibile tra risorse impiegate e risultati ottenuti","La quantità di debiti contratti","Il livello del fatturato"], correct:1, explain:"L'efficienza valuta quanto bene vengono utilizzate le risorse per ottenere un dato risultato."},
+  {topic:"Efficienza e strategia", q:"L'economicità aziendale indica:", options:["La capacità dell'impresa di operare in equilibrio economico duraturo nel tempo","Il valore di mercato delle azioni","Il numero di filiali dell'impresa","La quota di mercato detenuta"], correct:0, explain:"L'economicità è la condizione di equilibrio economico che consente all'impresa di sopravvivere e svilupparsi nel tempo."},
+  {topic:"Forme giuridiche", q:"La Società per Azioni (SPA) è caratterizzata da:", options:["Responsabilità illimitata dei soci","Responsabilità limitata dei soci e capitale diviso in azioni","Assenza di personalità giuridica","Capitale diviso in quote non trasferibili"], correct:1, explain:"Nella SPA i soci rispondono limitatamente al capitale conferito e la partecipazione è rappresentata da azioni."},
+  {topic:"Forme giuridiche", q:"La Società a Responsabilità Limitata (SRL) si distingue per:", options:["Responsabilità illimitata dei soci","Capitale diviso in quote e responsabilità limitata dei soci","Obbligo di quotazione in borsa","Assenza di un capitale sociale minimo in ogni caso"], correct:1, explain:"Nella SRL il capitale è diviso in quote e i soci rispondono limitatamente al capitale sottoscritto."},
+  {topic:"Forme giuridiche", q:"Nelle società di persone (es. Società in Nome Collettivo):", options:["I soci rispondono limitatamente al capitale conferito","I soci rispondono illimitatamente e solidalmente per le obbligazioni sociali","Non esiste alcuna forma di responsabilità","Il capitale è sempre diviso in azioni"], correct:1, explain:"Nelle società di persone la responsabilità dei soci è, di norma, illimitata e solidale verso i creditori sociali."},
+  {topic:"Forme giuridiche", q:"Il capitale sociale rappresenta:", options:["L'utile distribuito ai soci","Il valore nominale complessivo dei conferimenti effettuati dai soci","Il totale dei debiti verso banche","Il fatturato annuo dell'impresa"], correct:1, explain:"Il capitale sociale è il valore, fissato nello statuto, dei conferimenti apportati dai soci al momento della costituzione (o di successivi aumenti)."},
+  {topic:"Organizzazione", q:"L'organigramma aziendale rappresenta:", options:["Il bilancio dell'impresa","La struttura organizzativa formale dell'impresa","Il piano di marketing","Il rendiconto finanziario"], correct:1, explain:"L'organigramma illustra graficamente ruoli, funzioni e linee gerarchiche all'interno dell'organizzazione."},
+  {topic:"Organizzazione", q:"Tra le funzioni aziendali tipiche rientrano:", options:["Solo la produzione","Produzione, marketing, finanza e risorse umane","Solo la contabilità","Solo la funzione legale"], correct:1, explain:"Un'impresa si articola tipicamente in più funzioni (produzione, marketing, finanza, risorse umane, ecc.) che collaborano al perseguimento degli obiettivi."},
+  {topic:"Marketing", q:"Il marketing mix è tradizionalmente composto dalle cosiddette '4P':", options:["Persone, Processo, Prova, Prezzo","Prodotto, Prezzo, Distribuzione (Place), Comunicazione (Promotion)","Produzione, Profitto, Personale, Pianificazione","Prodotto, Pubblicità, Politica, Programmazione"], correct:1, explain:"Le 4P classiche del marketing mix sono Product, Price, Place, Promotion."},
+  {topic:"Marketing", q:"Il ciclo di vita del prodotto comprende tipicamente le fasi di:", options:["Introduzione, sviluppo, maturità, declino","Nascita, fallimento, rilancio","Produzione, vendita, reso","Progettazione, brevetto, quotazione"], correct:0, explain:"Il ciclo di vita del prodotto descrive l'evoluzione delle vendite nelle fasi di introduzione, crescita/sviluppo, maturità e declino."},
+  {topic:"Finanza aziendale", q:"Il cash flow (flusso di cassa) rappresenta:", options:["Il fatturato lordo dell'impresa","La variazione delle disponibilità liquide in un determinato periodo","Il valore del magazzino a fine anno","L'utile netto di bilancio"], correct:1, explain:"Il cash flow misura le entrate e le uscite monetarie effettive, distinto dal risultato economico di competenza."},
+  {topic:"Finanza aziendale", q:"Il budget aziendale è principalmente:", options:["Un documento di natura solo fiscale","Uno strumento di programmazione e controllo economico-finanziario","Il bilancio consolidato di gruppo","Un contratto con i fornitori"], correct:1, explain:"Il budget traduce in termini economico-finanziari gli obiettivi e i programmi dell'impresa per un periodo futuro, permettendone il controllo."},
+  {topic:"Finanza aziendale", q:"Il bilancio consolidato è:", options:["Il bilancio di una singola impresa individuale","Il bilancio che rappresenta la situazione economico-patrimoniale di un gruppo di imprese","Un bilancio solo previsionale","Il bilancio richiesto solo alle ditte individuali"], correct:1, explain:"Il bilancio consolidato aggrega le situazioni contabili delle imprese appartenenti a un gruppo, eliminando le partite infragruppo."},
+  {topic:"Lavoro", q:"Il TFR (Trattamento di Fine Rapporto) è:", options:["Un premio di produzione mensile","Una quota di retribuzione accantonata annualmente e liquidata al termine del rapporto di lavoro","Un'imposta sui redditi da lavoro","Un contributo versato solo dal lavoratore"], correct:1, explain:"Il TFR è una somma che il datore di lavoro accantona ogni anno e corrisponde al lavoratore alla cessazione del rapporto."},
+  {topic:"Principi contabili", q:"I principi contabili (nazionali OIC o internazionali IAS/IFRS) servono a:", options:["Stabilire le aliquote fiscali","Definire regole e criteri per la corretta redazione del bilancio","Fissare il prezzo delle azioni in borsa","Regolare solo i rapporti di lavoro"], correct:1, explain:"I principi contabili forniscono i criteri di rilevazione, valutazione ed esposizione delle voci di bilancio."},
+  {topic:"Principi contabili", q:"Il principio della competenza economica prevede che:", options:["Costi e ricavi siano rilevati solo quando avviene l'incasso o il pagamento","Costi e ricavi siano attribuiti all'esercizio in cui economicamente maturano, indipendentemente dal momento dell'incasso/pagamento","Si contabilizzino solo i costi certi","Si escludano dal bilancio le imposte"], correct:1, explain:"Il principio di competenza economica impone di imputare costi e ricavi all'esercizio in cui si manifestano economicamente, non a quello dei movimenti di cassa."}
 ];
 
-function generateProceduralQuestion(){ return randChoice(GENERATORS)(); }
+const Q_DIRITTO_PRIVATO = [
+  {topic:"Soggetti di diritto", q:"La capacità giuridica di una persona fisica si acquista:", options:["Al compimento dei 18 anni","Al momento della nascita","Al momento del matrimonio","Al conseguimento della patente"], correct:1, explain:"Secondo l'art. 1 c.c., la capacità giuridica (idoneità a essere titolari di diritti e doveri) si acquista al momento della nascita."},
+  {topic:"Soggetti di diritto", q:"La capacità di agire si acquista, come regola generale:", options:["Alla nascita","Al compimento della maggiore età (18 anni)","A 21 anni","Al momento dell'iscrizione anagrafica"], correct:1, explain:"La capacità di agire, ossia l'idoneità a compiere validamente atti giuridici, si acquista di regola con la maggiore età (art. 2 c.c.)."},
+  {topic:"Soggetti di diritto", q:"Le persone giuridiche (es. società, associazioni riconosciute) sono:", options:["Sempre coincidenti con le persone fisiche che le compongono","Enti dotati di soggettività giuridica distinta da quella dei membri che le compongono","Prive di qualsiasi capacità giuridica","Solo enti pubblici"], correct:1, explain:"Le persone giuridiche sono centri di imputazione di situazioni giuridiche autonomi rispetto ai singoli individui che ne fanno parte."},
+  {topic:"Soggetti di diritto", q:"La persona fisica cessa di essere soggetto di diritto:", options:["Al compimento dei 100 anni","Con la morte","Con il fallimento","Con l'interdizione"], correct:1, explain:"La capacità giuridica della persona fisica si estingue con la morte."},
+  {topic:"Contratto", q:"Ai sensi dell'art. 1321 c.c., il contratto è definito come:", options:["Un atto unilaterale di un solo soggetto","L'accordo di due o più parti per costituire, regolare o estinguere tra loro un rapporto giuridico patrimoniale","Un provvedimento amministrativo","Una sentenza del giudice"], correct:1, explain:"Il contratto, secondo la definizione codicistica, richiede l'accordo di almeno due parti su un rapporto giuridico di natura patrimoniale."},
+  {topic:"Contratto", q:"Gli elementi essenziali del contratto secondo l'art. 1325 c.c. sono:", options:["Accordo, causa, oggetto e forma (se prescritta dalla legge)","Solo l'accordo delle parti","Solo il prezzo pattuito","Testimoni e notaio in ogni caso"], correct:0, explain:"L'art. 1325 c.c. indica come requisiti essenziali: l'accordo delle parti, la causa, l'oggetto e, quando richiesta, la forma."},
+  {topic:"Contratto", q:"La causa del contratto rappresenta:", options:["La firma apposta in calce al documento","La funzione economico-sociale che il contratto persegue","Il nome delle parti contraenti","La data di stipulazione"], correct:1, explain:"La causa è la ragione giustificativa, riconosciuta dall'ordinamento, dello spostamento patrimoniale operato dal contratto."},
+  {topic:"Contratto", q:"Un contratto nullo è:", options:["Un contratto valido ma modificabile","Un contratto privo di un elemento essenziale, inefficace fin dall'origine","Un contratto valido solo per un anno","Un contratto che produce comunque tutti i suoi effetti"], correct:1, explain:"La nullità colpisce il contratto privo di un requisito essenziale (o contrario a norme imperative): è inefficace ab origine e rilevabile da chiunque vi abbia interesse."},
+  {topic:"Contratto", q:"Un contratto annullabile è:", options:["Sempre nullo dall'origine e insanabile","Efficace fino a quando non venga annullato su richiesta della parte tutelata","Un contratto già estinto per prescrizione","Impossibile da sanare in ogni caso"], correct:1, explain:"Il contratto annullabile (es. per incapacità, errore, dolo, violenza) produce i suoi effetti fino alla pronuncia di annullamento, azionabile solo dalla parte a tutela della quale la legge prevede il rimedio."},
+  {topic:"Contratto", q:"Il dolo, come vizio del consenso, consiste in:", options:["Un semplice errore di calcolo","Un raggiro che induce la controparte a stipulare un contratto che altrimenti non avrebbe concluso","Una minaccia fisica","Un'offerta al pubblico"], correct:1, explain:"Il dolo è costituito da artifici o raggiri che traggono in inganno la controparte, viziandone la volontà contrattuale."},
+  {topic:"Contratto", q:"La violenza come vizio del consenso consiste in:", options:["Una minaccia di un male ingiusto e notevole che induce a contrarre per timore","Un errore sulla persona","Una semplice trattativa serrata","Un'offerta economicamente svantaggiosa"], correct:0, explain:"La violenza morale consiste nella minaccia di un male ingiusto tale da determinare la vittima a concludere il contratto per paura."},
+  {topic:"Contratto", q:"L'errore essenziale, rilevante ai fini dell'annullamento del contratto, è:", options:["Qualsiasi errore, anche irrilevante","L'errore che, se non ci fosse stato, avrebbe impedito la conclusione del contratto ed è inoltre riconoscibile dall'altro contraente","Un errore di battitura nel testo del contratto","Un errore commesso dal notaio"], correct:1, explain:"L'errore deve essere essenziale (determinante il consenso) e riconoscibile dall'altra parte per poter fondare l'annullamento del contratto."},
+  {topic:"Obbligazioni", q:"Secondo l'art. 1173 c.c., le obbligazioni derivano da:", options:["Solo dal contratto","Contratto, fatto illecito o altro atto/fatto idoneo a produrle secondo l'ordinamento","Solo da sentenze del giudice","Solo da leggi speciali"], correct:1, explain:"L'art. 1173 c.c. individua tre fonti delle obbligazioni: il contratto, il fatto illecito e ogni altro atto o fatto idoneo a produrle in conformità dell'ordinamento."},
+  {topic:"Obbligazioni", q:"L'adempimento dell'obbligazione consiste in:", options:["La rinuncia del creditore al proprio diritto","L'esatta esecuzione della prestazione dovuta","La cessione del contratto a un terzo","L'estinzione automatica del debito per decorso del tempo"], correct:1, explain:"L'adempimento è la corretta e puntuale esecuzione della prestazione dovuta dal debitore, che estingue l'obbligazione."},
+  {topic:"Obbligazioni", q:"L'inadempimento dell'obbligazione consiste in:", options:["L'esatta esecuzione della prestazione","La mancata o inesatta esecuzione della prestazione dovuta","La rinuncia del debitore al credito","Un accordo tra le parti"], correct:1, explain:"Si ha inadempimento quando il debitore non esegue, esegue solo in parte, o esegue in modo difforme la prestazione dovuta."},
+  {topic:"Responsabilità civile", q:"La responsabilità contrattuale nasce da:", options:["La violazione di un obbligo derivante da un contratto o da un rapporto obbligatorio preesistente","Un fatto illecito senza alcun rapporto preesistente","Un provvedimento amministrativo","Una legge penale"], correct:0, explain:"La responsabilità contrattuale presuppone l'esistenza di un vincolo obbligatorio preesistente, la cui violazione genera l'obbligo di risarcire il danno."},
+  {topic:"Responsabilità civile", q:"La responsabilità extracontrattuale (aquiliana, art. 2043 c.c.) sorge quando:", options:["Esiste sempre un contratto tra le parti","Un fatto doloso o colposo cagiona ad altri un danno ingiusto, in assenza di un preesistente rapporto obbligatorio","Le parti concordano preventivamente le conseguenze del danno","Si tratta solo di danni patrimoniali da inadempimento contrattuale"], correct:1, explain:"L'art. 2043 c.c. impone di risarcire il danno ingiusto arrecato ad altri con dolo o colpa, a prescindere da un rapporto contrattuale preesistente."},
+  {topic:"Responsabilità civile", q:"Il risarcimento del danno patrimoniale comprende tipicamente:", options:["Solo il danno emergente","Danno emergente e lucro cessante","Solo il lucro cessante","Nessuna delle due voci"], correct:1, explain:"Il risarcimento copre sia il danno emergente (perdita subita) sia il lucro cessante (mancato guadagno)."},
+  {topic:"Diritti reali", q:"Il diritto di proprietà (art. 832 c.c.) attribuisce al titolare il diritto di:", options:["Godere e disporre della cosa in modo pieno ed esclusivo, nei limiti di legge","Usare la cosa solo con il consenso di terzi","Cedere la cosa solo a titolo gratuito","Utilizzare la cosa solo per fini pubblici"], correct:0, explain:"La proprietà è il diritto reale più ampio, che consente al titolare di godere e disporre del bene in modo pieno ed esclusivo, entro i limiti dell'ordinamento."},
+  {topic:"Diritti reali", q:"I diritti reali minori (es. usufrutto, servitù, superficie) sono definiti anche:", options:["Diritti di credito","Diritti su cosa altrui","Diritti di famiglia","Diritti d'autore"], correct:1, explain:"I diritti reali minori (o di godimento) attribuiscono facoltà limitate su un bene di proprietà altrui."},
+  {topic:"Diritti reali", q:"Il possesso è definito come:", options:["Il diritto di proprietà pieno su un bene","Il potere di fatto su una cosa esercitato in modo corrispondente al diritto di proprietà o ad altro diritto reale","Un contratto di locazione","Un diritto di credito verso terzi"], correct:1, explain:"Il possesso è una situazione di fatto, tutelata dall'ordinamento, indipendente dalla titolarità formale del diritto."},
+  {topic:"Diritti reali", q:"L'usucapione consente di:", options:["Acquistare la proprietà di un bene tramite il possesso continuato per il tempo stabilito dalla legge","Vendere un bene senza contratto scritto","Ottenere un mutuo bancario","Estinguere un debito per decorso del tempo"], correct:0, explain:"L'usucapione è un modo di acquisto della proprietà (o di altri diritti reali) a titolo originario, basato sul possesso protratto per il periodo previsto dalla legge."},
+  {topic:"Prescrizione e decadenza", q:"La prescrizione comporta:", options:["L'acquisto automatico di un diritto", "L'estinzione di un diritto per il mancato esercizio protratto nel tempo","La nullità automatica del contratto","L'annullamento di una sentenza"], correct:1, explain:"La prescrizione estingue il diritto (salvo eccezioni) quando il titolare non lo esercita per il periodo di tempo stabilito dalla legge."},
+  {topic:"Prescrizione e decadenza", q:"La decadenza si differenzia dalla prescrizione perché:", options:["Comporta la perdita di un diritto per il mancato esercizio entro un termine perentorio, non soggetto a interruzione","È sempre rinunciabile dalle parti","Riguarda solo i diritti reali","Non è mai prevista dalla legge"], correct:0, explain:"La decadenza impone l'esercizio del diritto entro un termine fisso e perentorio, generalmente non suscettibile di sospensione o interruzione, a differenza della prescrizione."},
+  {topic:"Famiglia", q:"Il matrimonio civile produce effetti:", options:["Solo di natura patrimoniale","Sia personali sia patrimoniali tra i coniugi","Solo nei confronti dei figli","Nessun effetto giuridico"], correct:1, explain:"Il matrimonio genera diritti e doveri reciproci di natura personale (es. fedeltà, assistenza) e patrimoniale (es. regime dei beni) tra i coniugi."},
+  {topic:"Famiglia", q:"La comunione legale dei beni, regime patrimoniale automatico in mancanza di diversa convenzione, comporta che:", options:["Tutti i beni dei coniugi, anche quelli anteriori al matrimonio, diventano comuni","I beni acquistati durante il matrimonio (salvo eccezioni) diventano comuni ad entrambi i coniugi","I coniugi non possono mai acquistare beni personali","È l'unico regime patrimoniale ammesso dalla legge"], correct:1, explain:"Nella comunione legale, gli acquisti compiuti durante il matrimonio (con le eccezioni previste dalla legge, es. beni personali) cadono in comunione tra i coniugi."},
+  {topic:"Successioni", q:"La successione legittima si apre quando:", options:["Esiste un testamento valido ed efficace per l'intera eredità","Manca un testamento, oppure il testamento non dispone di tutti i beni","Il defunto era ancora in vita","Si tratta sempre di beni immobili"], correct:1, explain:"La successione legittima (disciplinata dalla legge) si applica in assenza di testamento o per la parte di eredità non disposta testamentariamente."},
+  {topic:"Successioni", q:"La successione testamentaria si fonda su:", options:["Un testamento validamente redatto dal defunto (de cuius)","Una decisione del giudice","Un accordo tra gli eredi","Una legge speciale regionale"], correct:0, explain:"La successione testamentaria attua le disposizioni di ultima volontà espresse dal defunto in un testamento valido."},
+  {topic:"Successioni", q:"I legittimari sono:", options:["Tutti i creditori del defunto","I soggetti (coniuge, figli, in mancanza ascendenti) ai quali la legge riserva una quota di eredità","Solo gli amici del defunto nominati in un testamento","Gli esecutori testamentari"], correct:1, explain:"I legittimari hanno diritto a una quota di eredità (quota di legittima) che il testatore non può loro sottrarre, salvo diseredazione per giusta causa nei casi previsti."},
+  {topic:"Fonti del diritto", q:"Nella gerarchia delle fonti del diritto italiano, al vertice si colloca:", options:["I regolamenti amministrativi","La Costituzione e le leggi costituzionali","Gli usi e le consuetudini","I contratti collettivi"], correct:1, explain:"La Costituzione e le leggi costituzionali rappresentano le fonti di rango più elevato, cui devono conformarsi le leggi ordinarie e le altre fonti."},
+  {topic:"Storia del diritto civile", q:"Il Codice Civile italiano attualmente vigente è entrato in vigore nel:", options:["1865","1942","1990","1948"], correct:1, explain:"Il vigente Codice Civile italiano è stato approvato ed è entrato in vigore nel 1942."},
+  {topic:"Negozio giuridico", q:"Il negozio giuridico è definito come:", options:["Un fatto naturale privo di rilevanza giuridica","Una manifestazione di volontà diretta a produrre effetti giuridici","Un provvedimento del giudice","Un obbligo di natura solo morale"], correct:1, explain:"Il negozio giuridico è l'atto con cui un soggetto manifesta la propria volontà per realizzare un determinato assetto di interessi con rilevanza giuridica."},
+  {topic:"Rappresentanza e contratti tipici", q:"La rappresentanza è:", options:["Il potere di agire in nome e per conto di un altro soggetto (rappresentato)","Un tipo di responsabilità penale","Un diritto reale di godimento","Una forma di prescrizione"], correct:0, explain:"Chi agisce in rappresentanza compie atti giuridici i cui effetti si producono direttamente nella sfera giuridica del rappresentato."},
+  {topic:"Rappresentanza e contratti tipici", q:"Il mandato è il contratto con cui:", options:["Una parte trasferisce la proprietà di un bene a un'altra","Una parte si obbliga a compiere uno o più atti giuridici per conto dell'altra","Si costituisce una società di persone","Si concede in godimento un immobile"], correct:1, explain:"Con il mandato, il mandatario si obbliga a compiere atti giuridici per conto del mandante, con o senza rappresentanza."},
+  {topic:"Rappresentanza e contratti tipici", q:"La donazione è il contratto con cui:", options:["Un soggetto vende un bene a un prezzo simbolico","Un soggetto arricchisce un altro per spirito di liberalità, senza ricevere un corrispettivo","Si costituisce un'ipoteca","Si stipula un contratto di lavoro"], correct:1, explain:"La donazione è un atto di liberalità con cui il donante attribuisce un vantaggio patrimoniale al donatario senza corrispettivo."}
+];
+
+const Q_ECONOMIA_POLITICA = [
+  {topic:"Domanda e offerta", q:"La legge della domanda afferma che, a parità di altre condizioni:", options:["Al crescere del prezzo, la quantità domandata aumenta","Al crescere del prezzo, la quantità domandata diminuisce","Il prezzo non influenza la quantità domandata","La domanda è sempre costante"], correct:1, explain:"Secondo la legge della domanda, esiste generalmente una relazione inversa tra prezzo e quantità domandata, a parità di altre condizioni (ceteris paribus)."},
+  {topic:"Domanda e offerta", q:"La legge dell'offerta afferma che, a parità di altre condizioni:", options:["Al crescere del prezzo, la quantità offerta diminuisce","Al crescere del prezzo, la quantità offerta aumenta","L'offerta è indipendente dal prezzo","L'offerta è sempre pari alla domanda"], correct:1, explain:"La relazione tra prezzo e quantità offerta è generalmente diretta: prezzi più alti incentivano una maggiore offerta."},
+  {topic:"Domanda e offerta", q:"L'equilibrio di mercato si realizza quando:", options:["La quantità domandata è maggiore della quantità offerta","La quantità domandata eguaglia la quantità offerta","Il prezzo è pari a zero","Non esistono compratori"], correct:1, explain:"L'equilibrio di mercato si ha nel punto in cui la curva di domanda e quella di offerta si intersecano, cioè quantità domandata = quantità offerta."},
+  {topic:"Elasticità", q:"L'elasticità della domanda al prezzo misura:", options:["La variazione percentuale della quantità domandata rispetto alla variazione percentuale del prezzo","Il livello assoluto del prezzo di mercato","La quantità totale prodotta","Il numero di consumatori nel mercato"], correct:0, explain:"L'elasticità-prezzo della domanda esprime la sensibilità della quantità domandata al variare percentuale del prezzo."},
+  {topic:"Elasticità", q:"Una domanda si definisce elastica quando:", options:["Il valore assoluto dell'elasticità è minore di 1","Il valore assoluto dell'elasticità è maggiore di 1","L'elasticità è pari a zero","Il prezzo non varia mai"], correct:1, explain:"Quando |elasticità| > 1, la quantità domandata varia proporzionalmente più del prezzo: si parla di domanda elastica."},
+  {topic:"Strutture di mercato", q:"Il mercato di concorrenza perfetta è caratterizzato da:", options:["Un solo venditore che fissa il prezzo","Numerosi compratori e venditori, prodotto omogeneo, libertà di entrata e uscita, informazione perfetta","Barriere elevate all'ingresso di nuove imprese","Prodotti fortemente differenziati"], correct:1, explain:"La concorrenza perfetta è un modello teorico caratterizzato da atomicità degli operatori, omogeneità del prodotto e piena informazione."},
+  {topic:"Strutture di mercato", q:"Il monopolio è un mercato caratterizzato da:", options:["Numerosissimi venditori in concorrenza","Un unico venditore con potere di influenzare il prezzo di mercato","Assenza totale di domanda","Prezzi sempre fissati dallo Stato"], correct:1, explain:"Nel monopolio un solo produttore offre il bene, potendo esercitare un certo potere di mercato sul prezzo."},
+  {topic:"Strutture di mercato", q:"L'oligopolio è un mercato caratterizzato da:", options:["Un numero ristretto di imprese che dominano il settore","Infinite imprese in concorrenza perfetta","Un solo compratore","Assenza di interazione strategica tra le imprese"], correct:0, explain:"Nell'oligopolio poche imprese di grandi dimensioni si spartiscono il mercato, con forte interdipendenza strategica tra loro."},
+  {topic:"Strutture di mercato", q:"La concorrenza monopolistica è caratterizzata da:", options:["Un solo venditore e prodotto omogeneo","Molte imprese, prodotti differenziati, libertà di entrata e uscita dal mercato","Barriere assolute all'entrata","Prezzo fissato per legge"], correct:1, explain:"Nella concorrenza monopolistica coesistono molte imprese che vendono prodotti simili ma differenziati (es. per marchio, qualità)."},
+  {topic:"Macroeconomia", q:"Il PIL (Prodotto Interno Lordo) misura:", options:["Il valore di mercato di tutti i beni e servizi finali prodotti in un paese in un periodo","Solo le esportazioni di un paese","Il debito pubblico complessivo","Il numero di imprese attive in un paese"], correct:0, explain:"Il PIL è il principale indicatore della produzione aggregata di un'economia in un dato periodo di tempo."},
+  {topic:"Macroeconomia", q:"Il PIL può essere calcolato con l'approccio:", options:["Solo della spesa","Della spesa, del reddito o del valore aggiunto","Solo demografico","Solo della bilancia commerciale"], correct:1, explain:"Il PIL può essere stimato in modo equivalente sommando le spese finali, i redditi percepiti dai fattori produttivi, o il valore aggiunto dei settori produttivi."},
+  {topic:"Macroeconomia", q:"Il PIL reale, a differenza di quello nominale:", options:["Non tiene conto dei prezzi correnti","È corretto per l'effetto dell'inflazione, permettendo confronti nel tempo","Include solo i servizi","È sempre inferiore al PIL nominale"], correct:1, explain:"Il PIL reale utilizza prezzi costanti (di un anno base) per depurare la misura dall'effetto della variazione dei prezzi (inflazione)."},
+  {topic:"Macroeconomia", q:"L'inflazione è definita come:", options:["Una diminuzione generale e persistente dei prezzi","Un aumento generale e persistente del livello dei prezzi","La crescita del PIL reale","Una diminuzione della disoccupazione"], correct:1, explain:"L'inflazione indica un aumento diffuso e continuativo del livello generale dei prezzi in un'economia."},
+  {topic:"Macroeconomia", q:"La deflazione è definita come:", options:["Un aumento generale dei prezzi","Una diminuzione generale e persistente del livello dei prezzi","Una fase di forte crescita economica","Un aumento dei salari reali"], correct:1, explain:"La deflazione è l'opposto dell'inflazione: un calo continuativo del livello generale dei prezzi."},
+  {topic:"Macroeconomia", q:"Il tasso di disoccupazione è definito come:", options:["Il rapporto tra occupati e popolazione totale","Il rapporto tra persone in cerca di occupazione e forza lavoro totale","Il numero assoluto di disoccupati","Il rapporto tra PIL e popolazione"], correct:1, explain:"Il tasso di disoccupazione è calcolato dividendo il numero di persone in cerca di lavoro per la forza lavoro complessiva (occupati + disoccupati)."},
+  {topic:"Politiche economiche", q:"La politica fiscale è condotta principalmente da:", options:["La Banca Centrale","Il Governo, tramite spesa pubblica e tassazione","Le singole imprese private","I sindacati"], correct:1, explain:"La politica fiscale riguarda le decisioni di spesa pubblica e tassazione adottate dal Governo per influenzare l'economia."},
+  {topic:"Politiche economiche", q:"La politica monetaria è condotta principalmente da:", options:["Il Parlamento","La Banca Centrale","I Ministeri delle finanze regionali","Le associazioni di categoria"], correct:1, explain:"La politica monetaria è di competenza della Banca Centrale, che agisce su tassi di interesse, offerta di moneta e altri strumenti."},
+  {topic:"Politiche economiche", q:"Uno strumento tipico di politica monetaria è:", options:["La variazione dei tassi di interesse ufficiali","L'aumento delle imposte dirette","La costruzione di infrastrutture pubbliche","La riduzione della spesa sanitaria"], correct:0, explain:"Le banche centrali utilizzano principalmente la variazione dei tassi di interesse (e altri strumenti come le operazioni di mercato aperto) per condurre la politica monetaria."},
+  {topic:"Politiche economiche", q:"L'obiettivo primario dichiarato della Banca Centrale Europea (BCE) è:", options:["Massimizzare l'occupazione a ogni costo","Mantenere la stabilità dei prezzi nell'area euro","Finanziare direttamente i governi","Fissare i salari minimi europei"], correct:1, explain:"Il mandato principale della BCE, sancito dai Trattati, è il mantenimento della stabilità dei prezzi nell'Eurozona."},
+  {topic:"Concetti fondamentali", q:"Il costo opportunità di una scelta è:", options:["Il costo monetario diretto sostenuto","Il valore della migliore alternativa a cui si rinuncia effettuando quella scelta","Sempre pari a zero","Un costo che non deve mai essere considerato"], correct:1, explain:"Il costo opportunità rappresenta ciò a cui si rinuncia scegliendo un'alternativa rispetto alla migliore opzione disponibile non scelta."},
+  {topic:"Concetti fondamentali", q:"I rendimenti di scala crescenti si verificano quando:", options:["Un aumento proporzionale di tutti gli input genera un aumento più che proporzionale dell'output","L'output rimane costante all'aumentare degli input","Un aumento degli input riduce sempre l'output","Non esiste alcuna relazione tra input e output"], correct:0, explain:"Si parla di rendimenti di scala crescenti quando raddoppiando tutti gli input, l'output aumenta più che proporzionalmente."},
+  {topic:"Benessere e mercato", q:"Il surplus del consumatore è dato da:", options:["Il prezzo pagato per il bene","La differenza tra la disponibilità a pagare del consumatore e il prezzo effettivamente pagato","Il costo di produzione del bene","Il totale delle tasse pagate"], correct:1, explain:"Il surplus del consumatore misura il beneficio netto ottenuto dal consumatore rispetto a quanto sarebbe stato disposto a pagare."},
+  {topic:"Benessere e mercato", q:"Il surplus del produttore è dato da:", options:["Il costo totale di produzione","La differenza tra il prezzo di vendita ricevuto e il prezzo minimo a cui il produttore sarebbe stato disposto a vendere","Il fatturato lordo dell'impresa","Le tasse pagate dal produttore"], correct:1, explain:"Il surplus del produttore rappresenta il guadagno netto del venditore rispetto al prezzo minimo accettabile per la vendita."},
+  {topic:"Fallimenti di mercato", q:"Un'esternalità negativa si verifica quando:", options:["Un'attività economica genera un beneficio per soggetti terzi non coinvolti","Un'attività economica impone un costo a soggetti terzi non coinvolti nella transazione (es. inquinamento)","Il mercato funziona in modo perfettamente efficiente","Non esistono effetti esterni all'attività economica"], correct:1, explain:"Le esternalità negative sono costi che ricadono su terzi estranei alla transazione economica che le genera, come nel caso dell'inquinamento."},
+  {topic:"Fallimenti di mercato", q:"I beni pubblici sono caratterizzati da:", options:["Escludibilità e rivalità nel consumo","Non escludibilità e non rivalità nel consumo","Prezzo sempre elevato","Produzione esclusivamente privata"], correct:1, explain:"I beni pubblici (es. difesa nazionale, illuminazione stradale) non possono escludere alcuno dal consumo e il consumo di uno non riduce la disponibilità per gli altri."},
+  {topic:"Economia internazionale", q:"La bilancia dei pagamenti registra:", options:["Solo le esportazioni di beni","L'insieme delle transazioni economiche di un paese con il resto del mondo in un dato periodo","Il bilancio dello Stato","Il debito pubblico interno"], correct:1, explain:"La bilancia dei pagamenti riepiloga tutte le transazioni economiche (beni, servizi, capitali) tra residenti e non residenti."},
+  {topic:"Economia internazionale", q:"Il tasso di cambio è definito come:", options:["Il tasso di interesse pagato sui titoli di Stato","Il prezzo di una valuta espresso in termini di un'altra valuta","Il livello generale dei prezzi interni","Il tasso di crescita del PIL"], correct:1, explain:"Il tasso di cambio indica quante unità di una valuta sono necessarie per acquistarne un'unità di un'altra."},
+  {topic:"Finanza pubblica", q:"Il debito pubblico rappresenta:", options:["Il disavanzo di un singolo anno","L'ammontare complessivo dei prestiti contratti nel tempo dallo Stato e non ancora rimborsati","Le tasse pagate in un anno","Il patrimonio netto dello Stato"], correct:1, explain:"Il debito pubblico è lo stock cumulato di tutti i disavanzi (deficit) pubblici accumulati nel tempo, al netto dei rimborsi."},
+  {topic:"Finanza pubblica", q:"Il disavanzo (deficit) pubblico di un anno è dato da:", options:["Il totale del debito pubblico accumulato","La differenza negativa tra entrate e uscite pubbliche in quell'anno","Il PIL nominale dell'anno","Le esportazioni nette"], correct:1, explain:"Il deficit pubblico annuale è la differenza tra le uscite e le entrate dello Stato in un singolo esercizio finanziario, quando le uscite superano le entrate."},
+  {topic:"Macroeconomia", q:"La domanda aggregata di un'economia è tipicamente composta da:", options:["Solo dai consumi delle famiglie","Consumi, investimenti, spesa pubblica ed esportazioni nette","Solo dalle esportazioni","Solo dagli investimenti delle imprese"], correct:1, explain:"La domanda aggregata (Y = C + I + G + NX) somma consumi, investimenti, spesa pubblica ed esportazioni nette."},
+  {topic:"Macroeconomia", q:"La moneta svolge principalmente le funzioni di:", options:["Solo mezzo di scambio","Mezzo di scambio, unità di conto e riserva di valore","Solo strumento di investimento","Solo strumento di tassazione"], correct:1, explain:"La moneta assolve a tre funzioni fondamentali: facilitare gli scambi, fungere da unità di misura dei valori, e conservare valore nel tempo."},
+  {topic:"Macroeconomia", q:"Il tasso di interesse reale è calcolato come:", options:["Tasso nominale più tasso di inflazione","Tasso nominale meno tasso di inflazione","Tasso di inflazione diviso il PIL","Tasso nominale moltiplicato per l'inflazione"], correct:1, explain:"Il tasso di interesse reale approssima la differenza tra il tasso nominale e il tasso di inflazione, misurando il rendimento in termini di potere d'acquisto."},
+  {topic:"Macroeconomia", q:"La curva di Phillips descrive, nel breve periodo, la relazione tra:", options:["PIL e popolazione","Inflazione e disoccupazione","Tassi di cambio e esportazioni","Debito pubblico e tasso di interesse"], correct:1, explain:"La curva di Phillips ipotizza, nel breve periodo, una relazione inversa tra tasso di inflazione e tasso di disoccupazione."},
+  {topic:"Macroeconomia", q:"Il moltiplicatore keynesiano descrive:", options:["L'effetto amplificato di una variazione della spesa autonoma sul reddito nazionale complessivo","La relazione tra tasso di cambio ed esportazioni","Il rapporto tra debito pubblico e PIL","La quota di risparmio delle famiglie"], correct:0, explain:"Secondo la teoria keynesiana, una variazione della spesa autonoma (es. investimenti pubblici) genera un effetto moltiplicato sul reddito nazionale, superiore alla spesa iniziale."}
+];
+
+const Q_STORIA_ECONOMICA = [
+  {topic:"Rivoluzione industriale", q:"La Rivoluzione Industriale ebbe inizio:", options:["In Francia, all'inizio del XIX secolo","In Inghilterra, nella seconda metà del XVIII secolo","In Germania, nel XVII secolo","Negli Stati Uniti, nel XVI secolo"], correct:1, explain:"La prima Rivoluzione Industriale prese avvio in Inghilterra a partire dalla seconda metà del Settecento."},
+  {topic:"Rivoluzione industriale", q:"Tra le innovazioni chiave della prima Rivoluzione Industriale figura:", options:["Internet","La macchina a vapore","Il computer","Il motore elettrico"], correct:1, explain:"La macchina a vapore, perfezionata da James Watt, fu una delle innovazioni tecnologiche fondamentali della prima Rivoluzione Industriale."},
+  {topic:"Rivoluzione industriale", q:"La rivoluzione agricola contribuì alla Rivoluzione Industriale perché:", options:["Ridusse la popolazione europea","Aumentò la produttività agricola, liberando manodopera per l'industria","Impedì lo sviluppo urbano","Bloccò il commercio internazionale"], correct:1, explain:"I miglioramenti nelle tecniche agricole aumentarono la produttività, rendendo disponibile manodopera da impiegare nel settore industriale nascente."},
+  {topic:"Rivoluzione industriale", q:"Il sistema di fabbrica si distingue dal precedente lavoro a domicilio (putting-out system) per:", options:["La totale assenza di lavoratori salariati","La concentrazione della produzione e dei lavoratori in un unico luogo, con macchinari centralizzati","L'assenza di qualunque forma di organizzazione","La produzione esclusivamente artigianale"], correct:1, explain:"Con il sistema di fabbrica, produzione e lavoratori si concentrano in un unico stabilimento dotato di macchinari, superando la dispersione tipica del lavoro a domicilio."},
+  {topic:"Rivoluzione industriale", q:"La seconda Rivoluzione Industriale (fine XIX secolo) è associata soprattutto a:", options:["L'invenzione della stampa","Elettricità, acciaio, chimica e motore a scoppio","La sola diffusione dell'agricoltura","Il ritorno al feudalesimo"], correct:1, explain:"La seconda Rivoluzione Industriale portò innovazioni in settori come elettricità, siderurgia, chimica e motori a scoppio."},
+  {topic:"Sistemi economici pre-industriali", q:"Il sistema feudale si basava principalmente su:", options:["Un rapporto di vassallaggio, con concessione di terre (feudi) in cambio di fedeltà e servizi","Un sistema di libero scambio globale","La proprietà collettiva statale di tutte le terre","L'assenza totale di gerarchie sociali"], correct:0, explain:"Il feudalesimo si fondava su legami personali tra signore e vassallo, con concessione di terre in cambio di fedeltà e prestazioni militari/economiche."},
+  {topic:"Sistemi economici pre-industriali", q:"Le corporazioni medievali erano:", options:["Banche internazionali","Associazioni di artigiani o mercanti che regolavano una determinata attività economica","Eserciti mercenari","Tribunali ecclesiastici"], correct:1, explain:"Le corporazioni (o arti) medievali disciplinavano l'accesso, la produzione e la qualità di un determinato mestiere o commercio."},
+  {topic:"Sistemi economici pre-industriali", q:"La rivoluzione commerciale del basso Medioevo fu favorita da:", options:["Il crollo dei commerci mediterranei","La ripresa dei commerci e la nascita delle repubbliche marinare","L'isolamento economico dell'Europa","La scomparsa della moneta"], correct:1, explain:"Tra XI e XIV secolo la ripresa dei traffici commerciali, favorita anche dalle repubbliche marinare italiane, rilanciò l'economia europea."},
+  {topic:"Dottrine economiche storiche", q:"Il mercantilismo (XVI-XVIII secolo) sosteneva che:", options:["La ricchezza di una nazione dipendesse dall'accumulo di metalli preziosi e da un saldo commerciale attivo","Il libero scambio fosse sempre preferibile a qualunque intervento statale","Lo Stato non dovesse mai intervenire in economia","La ricchezza derivasse solo dall'agricoltura"], correct:0, explain:"Il pensiero mercantilista identificava la ricchezza nazionale con l'accumulo di oro/argento e con un attivo della bilancia commerciale, promuovendo l'intervento statale."},
+  {topic:"Dottrine economiche storiche", q:"Il liberismo economico, associato ad Adam Smith, sostiene che:", options:["Il mercato si autoregola tramite la 'mano invisibile', con un intervento statale limitato","Lo Stato deve pianificare integralmente la produzione","Il commercio internazionale va sempre vietato","I prezzi devono essere fissati per legge"], correct:0, explain:"Adam Smith teorizzò che il perseguimento dell'interesse individuale, in un mercato concorrenziale, porti a un beneficio collettivo tramite la 'mano invisibile'."},
+  {topic:"Dottrine economiche storiche", q:"Il protezionismo commerciale consiste in:", options:["L'eliminazione totale dei dazi doganali","Misure (come dazi e quote) volte a proteggere la produzione nazionale dalla concorrenza estera","Il libero movimento di merci senza alcun controllo","Un accordo per abolire le dogane"], correct:1, explain:"Le politiche protezionistiche impiegano strumenti come dazi e contingentamenti per tutelare i produttori nazionali dalla concorrenza straniera."},
+  {topic:"Organizzazione del lavoro", q:"Il taylorismo/fordismo introdusse principalmente:", options:["Il ritorno al lavoro artigianale individuale","L'organizzazione scientifica del lavoro e la catena di montaggio","L'abolizione della fabbrica","Il lavoro esclusivamente agricolo"], correct:1, explain:"Taylor e Ford svilupparono metodi di organizzazione scientifica del lavoro e la produzione in serie tramite catena di montaggio, tipici della grande industria del primo Novecento."},
+  {topic:"Crisi e sistema monetario", q:"Il gold standard era un sistema monetario in cui:", options:["La valuta era convertibile in una quantità fissa di oro","Non esisteva alcuna moneta ufficiale","Le banche centrali non avevano alcun ruolo","Le valute fluttuavano liberamente senza ancoraggi"], correct:0, explain:"Nel sistema aureo (gold standard), le valute nazionali erano convertibili in oro a un tasso di cambio fisso."},
+  {topic:"Crisi e sistema monetario", q:"La crisi del 1929 (Grande Depressione) ebbe inizio con:", options:["Il crollo della borsa di Wall Street","Una guerra mondiale","L'introduzione dell'euro","Un embargo petrolifero"], correct:0, explain:"La Grande Depressione fu innescata dal crollo del mercato azionario statunitense (Wall Street) nell'ottobre 1929."},
+  {topic:"Crisi e sistema monetario", q:"Il New Deal, varato dal presidente Roosevelt, fu:", options:["Un trattato di pace internazionale","Un programma di riforme economiche per contrastare la Grande Depressione","Un accordo commerciale con l'Europa","Un piano militare"], correct:1, explain:"Il New Deal fu un insieme di politiche e riforme economiche statunitensi volte a rilanciare l'economia dopo la crisi del 1929."},
+  {topic:"Crisi e sistema monetario", q:"Gli accordi di Bretton Woods (1944) istituirono:", options:["L'Unione Europea","Un nuovo sistema monetario internazionale basato sul dollaro convertibile in oro, con la creazione di FMI e Banca Mondiale","Il WTO","La NATO"], correct:1, explain:"Bretton Woods definì un sistema di cambi fissi ancorato al dollaro (a sua volta convertibile in oro) e istituì il Fondo Monetario Internazionale e la Banca Mondiale."},
+  {topic:"Crisi e sistema monetario", q:"Il sistema di Bretton Woods entrò definitivamente in crisi nel:", options:["1944","1957","1971, con la fine della convertibilità dollaro-oro","2008"], correct:2, explain:"Nel 1971 il presidente Nixon sospese la convertibilità del dollaro in oro, ponendo fine al sistema di cambi fissi di Bretton Woods."},
+  {topic:"Ricostruzione post-bellica", q:"Il Piano Marshall fu:", options:["Un programma statunitense di aiuti economici per la ricostruzione dell'Europa nel dopoguerra","Un'alleanza militare europea","Un trattato di pace con la Germania","Un piano di colonizzazione africana"], correct:0, explain:"Il Piano Marshall (1948) fornì assistenza economica statunitense ai paesi europei per favorirne la ricostruzione dopo la Seconda guerra mondiale."},
+  {topic:"Ricostruzione post-bellica", q:"Il boom economico italiano (miracolo economico) si colloca principalmente:", options:["Negli anni '20 del Novecento","Negli anni '50-'60 del Novecento","Negli anni '80 del Novecento","Nei primi anni 2000"], correct:1, explain:"Il cosiddetto 'miracolo economico' italiano si sviluppò soprattutto tra la metà degli anni '50 e la fine degli anni '60."},
+  {topic:"Integrazione europea", q:"La Comunità Economica Europea (CEE) fu istituita con:", options:["Il Trattato di Maastricht (1992)","Il Trattato di Roma (1957)","Il Trattato di Lisbona (2007)","Gli accordi di Bretton Woods (1944)"], correct:1, explain:"La CEE fu istituita con il Trattato di Roma, firmato nel 1957 da sei paesi fondatori."},
+  {topic:"Integrazione europea", q:"Il Trattato di Maastricht (1992) istituì:", options:["La CEE","L'Unione Europea, ponendo le basi per l'Unione Economica e Monetaria","La Società delle Nazioni","L'OPEC"], correct:1, explain:"Il Trattato di Maastricht trasformò la CEE in Unione Europea e pose le basi per la successiva introduzione della moneta unica."},
+  {topic:"Integrazione europea", q:"L'euro come moneta unica europea è stato introdotto:", options:["Solo in forma scritturale nel 1999 e in circolazione fisica nel 2002","Immediatamente in tutti i paesi UE nel 1957","Nel 2008, dopo la crisi finanziaria","Nel 1944, con Bretton Woods"], correct:0, explain:"L'euro è stato introdotto come moneta scritturale (contabile) nel 1999 e come moneta fisica in circolazione dal 2002."},
+  {topic:"Crisi contemporanee", q:"La crisi petrolifera del 1973 fu causata principalmente da:", options:["Un terremoto in Medio Oriente","L'embargo petrolifero dei paesi OPEC in seguito alla guerra del Kippur","Una crisi bancaria europea","La fine del gold standard"], correct:1, explain:"L'embargo petrolifero deciso dai paesi OPEC nel 1973, in risposta al sostegno occidentale a Israele nella guerra del Kippur, provocò un forte shock nei prezzi del petrolio."},
+  {topic:"Crisi contemporanee", q:"La stagflazione degli anni '70 è caratterizzata da:", options:["Bassa inflazione e alta crescita","Coesistenza di alta inflazione e stagnazione economica (bassa crescita/alta disoccupazione)","Deflazione e piena occupazione","Crescita del PIL senza alcuna inflazione"], correct:1, explain:"La stagflazione descrive la situazione, insolita per la teoria economica tradizionale, in cui inflazione elevata e stagnazione economica si presentano contemporaneamente."},
+  {topic:"Crisi contemporanee", q:"La crisi del debito sovrano europeo (2010-2012) colpì in particolare:", options:["Solo la Germania","Paesi come Grecia, Portogallo, Irlanda, Spagna e Italia","Solo i paesi extra-UE","Solo gli Stati Uniti"], correct:1, explain:"La crisi del debito sovrano colpì soprattutto alcuni paesi dell'area euro con elevato debito pubblico e/o squilibri di bilancio, tra cui Grecia, Portogallo, Irlanda, Spagna e Italia."},
+  {topic:"Globalizzazione", q:"La globalizzazione economica ha comportato principalmente:", options:["L'isolamento dei mercati nazionali","Una crescente integrazione dei mercati mondiali di beni, capitali e lavoro","La scomparsa del commercio internazionale","Il ritorno a economie di sussistenza"], correct:1, explain:"La globalizzazione ha progressivamente integrato mercati, catene produttive e flussi finanziari a livello mondiale."},
+  {topic:"Colonialismo", q:"Il colonialismo europeo del XIX secolo fu motivato anche da:", options:["La totale assenza di interessi economici","La ricerca di materie prime e nuovi mercati per i prodotti industriali","La volontà di ridurre la produzione industriale europea","L'abolizione del commercio internazionale"], correct:1, explain:"L'espansione coloniale ottocentesca fu spinta anche da motivazioni economiche, quali l'approvvigionamento di materie prime e la ricerca di sbocchi commerciali."},
+  {topic:"Colonialismo", q:"Le Compagnie delle Indie (es. inglese, olandese) erano:", options:["Eserciti regolari statali","Società commerciali con privilegi statali per il commercio con le colonie","Organizzazioni religiose","Sindacati dei lavoratori"], correct:1, explain:"Le Compagnie delle Indie erano società commerciali private che godevano di privilegi (spesso monopolistici) concessi dallo Stato per il commercio coloniale."},
+  {topic:"Demografia storica", q:"La rivoluzione demografica europea (XVIII-XIX secolo) fu caratterizzata da:", options:["Un forte calo della popolazione","Una forte crescita della popolazione dovuta soprattutto al calo della mortalità","L'assenza di variazioni demografiche","Una migrazione di massa verso le campagne"], correct:1, explain:"Il miglioramento delle condizioni igienico-sanitarie e alimentari ridusse la mortalità, determinando una crescita sostenuta della popolazione europea."},
+  {topic:"Trasporti e infrastrutture", q:"La rivoluzione dei trasporti dell'Ottocento fu segnata soprattutto da:", options:["La diffusione dell'automobile","La diffusione della ferrovia","L'invenzione dell'aereo","La costruzione dei primi grattacieli"], correct:1, explain:"Nel XIX secolo la rete ferroviaria si sviluppò rapidamente, rivoluzionando i trasporti di merci e persone e favorendo l'integrazione dei mercati."},
+  {topic:"Terza rivoluzione industriale", q:"La cosiddetta terza rivoluzione industriale (o rivoluzione informatica) è associata a:", options:["La diffusione della macchina a vapore","La diffusione di computer, elettronica e telecomunicazioni dalla seconda metà del Novecento","Il ritorno all'artigianato","La scomparsa dell'industria manifatturiera"], correct:1, explain:"La terza rivoluzione industriale, a partire dalla seconda metà del XX secolo, è caratterizzata dalla diffusione di tecnologie informatiche ed elettroniche."},
+  {topic:"Industrializzazione italiana", q:"La rivoluzione industriale in Italia si sviluppò principalmente:", options:["Prima che in Inghilterra","Tra la fine dell'Ottocento e l'inizio del Novecento, soprattutto nel Nord-Ovest ('triangolo industriale')","Solo nel Sud Italia","Durante il Medioevo"], correct:1, explain:"L'industrializzazione italiana si concentrò soprattutto tra fine '800 e inizio '900 nel cosiddetto 'triangolo industriale' (Milano-Torino-Genova)."},
+  {topic:"Industrializzazione extraeuropea", q:"L'industrializzazione giapponese (era Meiji) ebbe inizio:", options:["Nel XVI secolo","Nella seconda metà del XIX secolo","Dopo la Seconda guerra mondiale","Nel Medioevo"], correct:1, explain:"Con la Restaurazione Meiji (a partire dal 1868), il Giappone avviò un rapido processo di modernizzazione e industrializzazione."}
+];
+
+const Q_TEORIA_GOVERNO_IMPRESA = [
+  {topic:"Teoria dell'impresa", q:"Secondo la teoria dei costi di transazione (Coase, Williamson), l'impresa nasce come:", options:["Un'alternativa al mercato per minimizzare i costi legati agli scambi economici","Un'invenzione puramente giuridica priva di razionalità economica","L'unico modo possibile per produrre beni","Un'entità priva di qualunque relazione con il mercato"], correct:0, explain:"Coase e Williamson spiegano l'esistenza dell'impresa come strumento per internalizzare transazioni quando i costi di ricorrere al mercato risultano troppo elevati."},
+  {topic:"Teoria dell'impresa", q:"La teoria delle risorse (Resource-Based View) sostiene che:", options:["Il vantaggio competitivo dipende solo dal settore in cui opera l'impresa","Il vantaggio competitivo deriva dalle risorse e competenze uniche e difficilmente imitabili dell'impresa","Tutte le imprese hanno le stesse risorse","Le risorse interne non contano ai fini della competitività"], correct:1, explain:"La Resource-Based View individua nelle risorse e capacità distintive, non facilmente imitabili dai concorrenti, la fonte del vantaggio competitivo duraturo."},
+  {topic:"Teoria dell'impresa", q:"Le competenze distintive (core competences) di un'impresa sono:", options:["Competenze comuni a tutte le imprese del settore","Capacità uniche e difficilmente imitabili che generano vantaggio competitivo","Solo le competenze amministrative","Competenze irrilevanti per la strategia"], correct:1, explain:"Le core competences sono capacità distintive, sviluppate nel tempo, che permettono all'impresa di differenziarsi in modo duraturo dai concorrenti."},
+  {topic:"Corporate governance", q:"La Corporate Governance riguarda:", options:["Solo la contabilità dell'impresa","L'insieme di regole, organi e meccanismi di direzione e controllo dell'impresa","Esclusivamente il marketing aziendale","Solo la gestione del personale"], correct:1, explain:"La corporate governance definisce le regole con cui l'impresa è diretta e controllata, incluendo il ruolo di organi come assemblea, CdA e organi di controllo."},
+  {topic:"Corporate governance", q:"Il sistema di governance tradizionale (in Italia) prevede tipicamente:", options:["Solo l'Assemblea dei soci","Assemblea, Consiglio di Amministrazione e Collegio Sindacale","Solo il Consiglio di Sorveglianza","Nessun organo di controllo"], correct:1, explain:"Nel modello tradizionale italiano gli organi sociali principali sono l'Assemblea, il Consiglio di Amministrazione (gestione) e il Collegio Sindacale (controllo)."},
+  {topic:"Corporate governance", q:"Il sistema dualistico di governance prevede:", options:["Un Consiglio di Sorveglianza e un Consiglio di Gestione","Solo un Amministratore Unico","L'assenza di organi di controllo","Solo il Collegio Sindacale"], correct:0, explain:"Nel sistema dualistico, la gestione è affidata a un Consiglio di Gestione, mentre il Consiglio di Sorveglianza svolge funzioni di controllo e, in parte, di indirizzo."},
+  {topic:"Corporate governance", q:"Il sistema monistico di governance prevede:", options:["Un Consiglio di Amministrazione con un Comitato di controllo interno costituito al suo interno","Due organi di gestione separati","L'assenza totale del Consiglio di Amministrazione","Solo un revisore esterno"], correct:0, explain:"Nel sistema monistico, il controllo è affidato a un Comitato costituito all'interno dello stesso Consiglio di Amministrazione."},
+  {topic:"Corporate governance", q:"Il Consiglio di Amministrazione (CdA) ha tipicamente il compito di:", options:["Svolgere solo attività di revisione contabile esterna","Gestire l'impresa e definirne gli indirizzi strategici","Rappresentare esclusivamente i lavoratori","Sostituire l'assemblea dei soci in ogni decisione"], correct:1, explain:"Il CdA è l'organo a cui è affidata la gestione dell'impresa e la definizione delle strategie, nell'ambito degli indirizzi fissati dall'assemblea."},
+  {topic:"Corporate governance", q:"Gli amministratori indipendenti all'interno del CdA servono principalmente a:", options:["Rappresentare solo gli interessi del socio di maggioranza","Garantire maggiore trasparenza e tutela di tutti gli azionisti, inclusi quelli di minoranza","Sostituire il Collegio Sindacale","Gestire solo gli aspetti fiscali"], correct:1, explain:"Gli amministratori indipendenti, privi di legami significativi con la proprietà o il management, contribuiscono a bilanciare gli interessi di tutti gli azionisti."},
+  {topic:"Corporate governance", q:"Il Collegio Sindacale ha principalmente la funzione di:", options:["Gestire operativamente l'impresa","Vigilare sull'osservanza della legge, dello statuto e sui principi di corretta amministrazione","Approvare il bilancio al posto dell'assemblea","Sostituire il CdA in caso di crisi"], correct:1, explain:"Il Collegio Sindacale svolge un ruolo di controllo sulla gestione, verificando il rispetto della legge, dello statuto e dei principi di corretta amministrazione."},
+  {topic:"Corporate governance", q:"Gli amministratori esecutivi, a differenza di quelli non esecutivi:", options:["Non hanno alcun potere decisionale","Hanno deleghe operative nella gestione quotidiana dell'impresa","Sono sempre esterni all'impresa","Coincidono sempre con i soci di minoranza"], correct:1, explain:"Gli amministratori esecutivi ricevono deleghe operative e sono coinvolti direttamente nella gestione corrente, a differenza dei non esecutivi che svolgono un ruolo di vigilanza e indirizzo."},
+  {topic:"Corporate governance", q:"Il principio 'comply or explain', tipico dei codici di autodisciplina, richiede alle società di:", options:["Rispettare obbligatoriamente ogni previsione del codice, senza eccezioni","Rispettare il codice di governance oppure spiegare pubblicamente le ragioni della deroga","Ignorare il codice se non conveniente","Applicare il codice solo se richiesto dal socio di maggioranza"], correct:1, explain:"Il principio 'comply or explain' consente alle società di discostarsi da singole raccomandazioni del codice, a condizione di motivarne pubblicamente le ragioni."},
+  {topic:"Teorie di governance", q:"La teoria degli stakeholder sostiene che l'impresa debba:", options:["Considerare esclusivamente l'interesse degli azionisti","Considerare gli interessi di tutti i portatori di interesse (dipendenti, clienti, fornitori, comunità, ecc.)","Ignorare completamente l'ambiente esterno","Massimizzare solo il fatturato di breve periodo"], correct:1, explain:"Secondo la stakeholder theory, l'impresa deve bilanciare gli interessi di tutti i soggetti coinvolti nella sua attività, non solo quelli degli azionisti."},
+  {topic:"Teorie di governance", q:"La teoria shareholder (Milton Friedman) sostiene che l'obiettivo primario dell'impresa sia:", options:["Massimizzare il valore per gli azionisti","Massimizzare il benessere della comunità locale","Ridurre a zero i profitti","Ignorare del tutto gli azionisti"], correct:0, explain:"La visione shareholder identifica nella massimizzazione del valore per gli azionisti l'obiettivo primario della gestione d'impresa."},
+  {topic:"Teorie di governance", q:"L'agency theory (teoria dell'agenzia) studia principalmente:", options:["Il rapporto tra impresa e fornitori","Il potenziale conflitto di interessi tra principale (proprietario) e agente (manager)","Le tecniche di produzione industriale","Il calcolo del bilancio consolidato"], correct:1, explain:"La teoria dell'agenzia analizza i problemi derivanti dalla separazione tra proprietà (principale) e gestione (agente), e i relativi costi di agenzia."},
+  {topic:"Teorie di governance", q:"La separazione tra proprietà e controllo è un fenomeno tipico:", options:["Delle piccole imprese familiari","Delle grandi società ad azionariato diffuso","Delle sole imprese pubbliche","Delle imprese individuali"], correct:1, explain:"Nelle grandi società quotate ad azionariato diffuso, spesso la proprietà (azionisti) è separata dal controllo effettivo (management)."},
+  {topic:"Analisi strategica", q:"Il modello delle 5 forze di Porter analizza:", options:["Solo la concorrenza diretta tra imprese esistenti","L'intensità competitiva di un settore, considerando concorrenti, nuovi entranti, prodotti sostitutivi e potere contrattuale di fornitori e clienti","Solo il potere dei fornitori","Solo le barriere normative"], correct:1, explain:"Il modello di Porter valuta l'attrattività di un settore analizzando cinque forze competitive: rivalità interna, minaccia di nuovi entranti, prodotti sostitutivi, potere di fornitori e clienti."},
+  {topic:"Analisi strategica", q:"La catena del valore di Porter scompone l'impresa in:", options:["Solo attività di marketing","Attività primarie e attività di supporto, per individuare le fonti del vantaggio competitivo","Solo attività finanziarie","Un unico processo indivisibile"], correct:1, explain:"La catena del valore distingue attività primarie (es. logistica, produzione, vendite) e di supporto (es. approvvigionamenti, risorse umane) per analizzare dove si crea valore."},
+  {topic:"Analisi strategica", q:"Il vantaggio competitivo di costo si ottiene quando l'impresa:", options:["Offre un prodotto percepito come unico dal mercato","Riesce a produrre a costi inferiori rispetto ai concorrenti, mantenendo un livello di qualità accettabile","Aumenta sistematicamente i prezzi","Riduce la qualità del prodotto senza ridurne i costi"], correct:1, explain:"Il vantaggio di costo consiste nel raggiungere una struttura di costi inferiore rispetto ai concorrenti, a parità di valore offerto al cliente."},
+  {topic:"Analisi strategica", q:"Il vantaggio competitivo di differenziazione si ottiene quando l'impresa:", options:["Produce esattamente come i concorrenti","Offre un prodotto o servizio percepito come unico o superiore dal mercato","Riduce sempre il prezzo di vendita","Elimina ogni investimento in innovazione"], correct:1, explain:"La differenziazione punta a rendere il prodotto/servizio percepito come unico, giustificando un prezzo premium agli occhi del cliente."},
+  {topic:"Analisi strategica", q:"L'analisi SWOT valuta:", options:["Solo i fattori esterni all'impresa","Punti di forza e debolezza (fattori interni), opportunità e minacce (fattori esterni)","Solo il bilancio dell'impresa","Solo la concorrenza diretta"], correct:1, explain:"La SWOT analysis combina l'analisi interna (Strengths, Weaknesses) con quella dell'ambiente esterno (Opportunities, Threats)."},
+  {topic:"Strategia e organizzazione", q:"La mission aziendale definisce principalmente:", options:["Il bilancio annuale dell'impresa","La ragion d'essere e lo scopo fondamentale dell'impresa","L'organigramma dettagliato","Le sole politiche di prezzo"], correct:1, explain:"La mission esprime l'identità e lo scopo di fondo dell'impresa, ossia perché essa esiste."},
+  {topic:"Strategia e organizzazione", q:"La vision aziendale rappresenta:", options:["L'aspirazione futura di lungo periodo dell'impresa","Il fatturato dell'anno in corso","Il codice etico interno","Il piano di smaltimento rifiuti"], correct:0, explain:"La vision descrive dove l'impresa aspira ad arrivare nel lungo periodo, orientando le scelte strategiche."},
+  {topic:"Strategia e organizzazione", q:"Le strategie di diversificazione consistono in:", options:["La riduzione delle attività dell'impresa a un solo prodotto","L'espansione dell'impresa in nuovi settori o mercati rispetto a quello originario","La chiusura di tutte le filiali estere","L'eliminazione della gamma di prodotti"], correct:1, explain:"La diversificazione consiste nell'ampliare il raggio d'azione dell'impresa verso nuovi business, correlati o non correlati a quello di origine."},
+  {topic:"Strategia e organizzazione", q:"Le strategie di integrazione verticale comportano:", options:["L'acquisizione di fasi della filiera produttiva a monte (fornitori) o a valle (distribuzione)","L'uscita totale dal mercato","La vendita di tutti gli asset produttivi","La fusione con un concorrente diretto nello stesso stadio della filiera"], correct:0, explain:"L'integrazione verticale consiste nell'internalizzare fasi della filiera situate a monte o a valle rispetto all'attività originaria dell'impresa."},
+  {topic:"Strategia e organizzazione", q:"Le alleanze strategiche (es. joint venture) permettono alle imprese di:", options:["Eliminare completamente il rischio d'impresa","Condividere risorse, competenze e rischi con altre imprese per il raggiungimento di obiettivi comuni","Evitare qualsiasi forma di collaborazione","Ottenere automaticamente il monopolio di settore"], correct:1, explain:"Le alleanze strategiche consentono di condividere risorse e rischi con partner esterni per perseguire obiettivi comuni, senza ricorrere a una fusione completa."},
+  {topic:"Ciclo di vita e conoscenza", q:"Il ciclo di vita dell'impresa comprende tipicamente le fasi di:", options:["Solo nascita e morte","Nascita, sviluppo, maturità e declino (o eventuale rilancio)","Solo maturità","Introduzione e crescita infinita"], correct:1, explain:"Analogamente al prodotto, anche l'impresa attraversa un ciclo di vita che comprende nascita, sviluppo, maturità ed eventuale declino o rilancio."},
+  {topic:"Ciclo di vita e conoscenza", q:"Il capitale intellettuale di un'impresa include tipicamente:", options:["Solo il capitale finanziario","Capitale umano, capitale organizzativo e capitale relazionale","Solo gli immobili aziendali","Solo il marchio registrato"], correct:1, explain:"Il capitale intellettuale comprende le risorse immateriali legate alle persone (umano), ai processi/sistemi interni (organizzativo) e alle relazioni esterne (relazionale)."},
+  {topic:"Ciclo di vita e conoscenza", q:"Il knowledge management in un'impresa riguarda:", options:["La sola gestione dei documenti cartacei","La gestione della conoscenza come risorsa strategica dell'impresa","Esclusivamente la gestione del magazzino","La gestione dei soli brevetti"], correct:1, explain:"Il knowledge management si occupa di creare, condividere e valorizzare la conoscenza (esplicita e tacita) presente in azienda come risorsa strategica."},
+  {topic:"Governance e mercati", q:"Un'OPA (Offerta Pubblica di Acquisto) è:", options:["Un'imposta sulle plusvalenze azionarie","Una proposta di acquisto di azioni rivolta a tutti gli azionisti di una società quotata","Un tipo di bilancio consolidato","Un contratto di lavoro dirigenziale"], correct:1, explain:"L'OPA è un'offerta rivolta pubblicamente a tutti gli azionisti di una società quotata per l'acquisto delle loro azioni, spesso finalizzata ad acquisirne il controllo."},
+  {topic:"Governance e mercati", q:"La governance delle imprese familiari si distingue tipicamente per:", options:["La totale assenza di legami tra proprietà e gestione","Una sovrapposizione tra proprietà, gestione e famiglia","L'obbligo di quotazione in borsa","L'assenza di un fondatore identificabile"], correct:1, explain:"Nelle imprese familiari, i ruoli di proprietario, gestore e membro della famiglia tendono a sovrapporsi, generando dinamiche di governance peculiari."},
+  {topic:"Governance e mercati", q:"Gli indici di bilancio (es. ROE, ROI, indici di liquidità) sono utilizzati nella valutazione strategica dell'impresa per:", options:["Sostituire completamente l'analisi qualitativa della strategia","Misurare in modo sintetico redditività, solidità e liquidità dell'impresa, a supporto delle decisioni strategiche","Calcolare esclusivamente le imposte dovute","Redigere il solo rendiconto ambientale"], correct:1, explain:"Gli indici di bilancio forniscono una sintesi quantitativa della performance economico-finanziaria, utile a supportare (non sostituire) le valutazioni strategiche."},
+  {topic:"Responsabilità sociale", q:"La Responsabilità Sociale d'Impresa (CSR) consiste in:", options:["L'obbligo di legge di pagare le tasse","L'integrazione volontaria di preoccupazioni sociali e ambientali nelle attività e nelle relazioni dell'impresa con gli stakeholder","La sola beneficenza occasionale","Un sinonimo di bilancio consolidato"], correct:1, explain:"La CSR indica l'impegno volontario dell'impresa a integrare considerazioni sociali e ambientali nella propria strategia e operatività, oltre agli obblighi di legge."}
+];
+
+/* =========================================================
+   GLOSSARI — base per il generatore infinito di definizioni
+   (materie non numeriche: Economia Aziendale, Diritto Privato,
+   Economia Politica, Storia Economica, Teoria e Governo d'Impresa)
+   ========================================================= */
+const GLOSSARY_ECONOMIA_AZIENDALE = [
+  {term:"Bilancio d'esercizio", definition:"documento che rappresenta la situazione patrimoniale, finanziaria ed economica dell'impresa al termine di un periodo amministrativo"},
+  {term:"Stato Patrimoniale", definition:"prospetto che espone attività, passività e patrimonio netto dell'impresa in un dato momento"},
+  {term:"Conto Economico", definition:"prospetto che espone costi e ricavi di competenza, determinando l'utile o la perdita del periodo"},
+  {term:"Nota Integrativa", definition:"documento che illustra e integra i dati esposti nello Stato Patrimoniale e nel Conto Economico"},
+  {term:"Patrimonio Netto", definition:"differenza tra attività e passività, che rappresenta i mezzi propri dell'impresa"},
+  {term:"Partita doppia", definition:"metodo contabile in cui ogni operazione viene registrata contemporaneamente in Dare e in Avere"},
+  {term:"Ammortamento", definition:"ripartizione del costo di un bene pluriennale sulla sua vita utile stimata"},
+  {term:"Immobilizzazioni", definition:"beni destinati a rimanere durevolmente nell'organizzazione aziendale"},
+  {term:"Attivo circolante", definition:"componenti dell'attivo destinate a trasformarsi in liquidità nel breve periodo, come rimanenze e crediti"},
+  {term:"ROE", definition:"indice di redditività del capitale proprio, dato dal rapporto tra utile netto e patrimonio netto"},
+  {term:"ROI", definition:"indice di redditività del capitale investito nella gestione operativa dell'impresa"},
+  {term:"ROS", definition:"indice di redditività delle vendite, dato dal rapporto tra reddito operativo e ricavi"},
+  {term:"Leva finanziaria", definition:"effetto dell'indebitamento sulla redditività del capitale proprio"},
+  {term:"Break-even point", definition:"livello di produzione o vendita in cui i ricavi totali eguagliano i costi totali"},
+  {term:"Costi fissi", definition:"costi che non variano al variare della quantità prodotta nel breve periodo"},
+  {term:"Costi variabili", definition:"costi che variano in proporzione alla quantità prodotta"},
+  {term:"Margine di contribuzione", definition:"differenza tra i ricavi e i costi variabili"},
+  {term:"Efficacia", definition:"capacità di un'organizzazione di raggiungere gli obiettivi prefissati"},
+  {term:"Efficienza", definition:"rapporto ottimale tra le risorse impiegate e i risultati ottenuti"},
+  {term:"Economicità", definition:"capacità dell'impresa di operare in condizioni di equilibrio economico duraturo nel tempo"},
+  {term:"Società per Azioni (SPA)", definition:"società di capitali con responsabilità limitata dei soci e capitale diviso in azioni"},
+  {term:"Società a Responsabilità Limitata (SRL)", definition:"società di capitali con responsabilità limitata dei soci e capitale diviso in quote"},
+  {term:"Società in Nome Collettivo (SNC)", definition:"società di persone in cui i soci rispondono in modo illimitato e solidale delle obbligazioni sociali"},
+  {term:"Capitale sociale", definition:"valore nominale complessivo dei conferimenti effettuati dai soci in una società"},
+  {term:"TFR (Trattamento di Fine Rapporto)", definition:"quota di retribuzione accantonata annualmente e corrisposta al lavoratore al termine del rapporto di lavoro"},
+  {term:"Budget aziendale", definition:"strumento di programmazione e controllo economico-finanziario riferito a un periodo futuro"},
+  {term:"Organigramma", definition:"rappresentazione grafica della struttura organizzativa formale dell'impresa"},
+  {term:"Marketing mix", definition:"insieme delle leve di prodotto, prezzo, distribuzione e comunicazione utilizzate dall'impresa"},
+  {term:"Ciclo di vita del prodotto", definition:"insieme delle fasi di introduzione, sviluppo, maturità e declino attraversate da un prodotto sul mercato"},
+  {term:"Cash flow", definition:"variazione delle disponibilità liquide dell'impresa registrata in un determinato periodo"},
+  {term:"Liquidità aziendale", definition:"capacità dell'impresa di far fronte con mezzi propri agli impegni finanziari a breve termine"},
+  {term:"Solvibilità", definition:"capacità dell'impresa di far fronte a tutti i propri impegni, sia a breve sia a lungo termine"},
+  {term:"Bilancio consolidato", definition:"bilancio che rappresenta la situazione economico-patrimoniale complessiva di un gruppo di imprese"},
+  {term:"Principio di competenza economica", definition:"criterio secondo cui costi e ricavi sono attribuiti all'esercizio in cui maturano economicamente, indipendentemente dal momento dell'incasso o del pagamento"},
+  {term:"Rimanenze di magazzino", definition:"scorte di materie prime, semilavorati o prodotti finiti non ancora venduti o utilizzati"},
+  {term:"Principi contabili", definition:"regole e criteri stabiliti per la corretta redazione del bilancio d'esercizio"},
+  {term:"Conferimento", definition:"apporto di beni, denaro o servizi effettuato da un socio a favore della società"},
+  {term:"Utile d'esercizio", definition:"risultato economico positivo evidenziato dal Conto Economico al termine del periodo"},
+  {term:"Indebitamento", definition:"ricorso al capitale di terzi, ossia ai debiti, per finanziare l'attività dell'impresa"},
+  {term:"Funzione di produzione (in azienda)", definition:"insieme delle attività dedicate alla trasformazione degli input in output dell'impresa"},
+  {term:"Coefficiente di variazione (in economia aziendale)", definition:"rapporto tra deviazione standard e media, utile per confrontare la variabilità di grandezze economiche diverse"}
+];
+
+const GLOSSARY_DIRITTO_PRIVATO = [
+  {term:"Capacità giuridica", definition:"idoneità di un soggetto a essere titolare di diritti e doveri, che si acquista con la nascita"},
+  {term:"Capacità di agire", definition:"idoneità a compiere validamente atti giuridici, che si acquista di regola con la maggiore età"},
+  {term:"Persona giuridica", definition:"ente dotato di soggettività giuridica distinta da quella dei singoli membri che lo compongono"},
+  {term:"Contratto", definition:"accordo di due o più parti diretto a costituire, regolare o estinguere tra loro un rapporto giuridico patrimoniale"},
+  {term:"Causa del contratto", definition:"funzione economico-sociale che il contratto persegue"},
+  {term:"Contratto nullo", definition:"contratto privo di un elemento essenziale, inefficace fin dall'origine e rilevabile da chiunque vi abbia interesse"},
+  {term:"Contratto annullabile", definition:"contratto viziato, efficace fino a quando non venga annullato su richiesta della parte tutelata dalla legge"},
+  {term:"Dolo", definition:"raggiro che induce la controparte a stipulare un contratto che altrimenti non avrebbe concluso"},
+  {term:"Violenza (vizio del consenso)", definition:"minaccia di un male ingiusto che induce un soggetto a contrarre per timore"},
+  {term:"Errore essenziale", definition:"errore che, se non ci fosse stato, avrebbe impedito la conclusione del contratto ed è riconoscibile dall'altra parte"},
+  {term:"Obbligazione", definition:"vincolo giuridico in forza del quale un soggetto, il debitore, è tenuto a una prestazione nei confronti di un altro, il creditore"},
+  {term:"Adempimento", definition:"esatta esecuzione della prestazione dovuta dal debitore"},
+  {term:"Inadempimento", definition:"mancata o inesatta esecuzione della prestazione dovuta dal debitore"},
+  {term:"Responsabilità contrattuale", definition:"responsabilità che deriva dalla violazione di un obbligo nascente da un rapporto contrattuale preesistente"},
+  {term:"Responsabilità extracontrattuale", definition:"responsabilità che deriva da un fatto illecito che cagiona un danno ingiusto, in assenza di un preesistente rapporto obbligatorio"},
+  {term:"Danno emergente", definition:"perdita patrimoniale effettivamente subita dal danneggiato a causa dell'illecito"},
+  {term:"Lucro cessante", definition:"mancato guadagno subito dal danneggiato a causa dell'illecito"},
+  {term:"Proprietà", definition:"diritto di godere e disporre di un bene in modo pieno ed esclusivo, entro i limiti stabiliti dalla legge"},
+  {term:"Usufrutto", definition:"diritto reale di godere di un bene altrui traendone ogni utilità, con l'obbligo di rispettarne la destinazione economica"},
+  {term:"Servitù", definition:"peso imposto su un fondo, detto servente, a vantaggio di un altro fondo, detto dominante"},
+  {term:"Possesso", definition:"potere di fatto su una cosa, esercitato in modo corrispondente al diritto di proprietà o ad altro diritto reale"},
+  {term:"Usucapione", definition:"modo di acquisto della proprietà, o di altri diritti reali, tramite il possesso continuato per il tempo previsto dalla legge"},
+  {term:"Prescrizione", definition:"estinzione di un diritto per il suo mancato esercizio protratto nel tempo"},
+  {term:"Decadenza", definition:"perdita di un diritto per il mancato esercizio entro un termine perentorio stabilito dalla legge"},
+  {term:"Matrimonio civile", definition:"atto che produce effetti sia personali sia patrimoniali tra i coniugi"},
+  {term:"Comunione legale dei beni", definition:"regime patrimoniale che rende comuni ai coniugi i beni acquistati durante il matrimonio, salvo le eccezioni previste dalla legge"},
+  {term:"Successione legittima", definition:"successione che si apre in mancanza di un testamento valido ed efficace per l'intera eredità"},
+  {term:"Successione testamentaria", definition:"successione che attua le disposizioni di ultima volontà espresse dal defunto in un testamento"},
+  {term:"Legittimari", definition:"soggetti ai quali la legge riserva necessariamente una quota di eredità, detta quota di legittima"},
+  {term:"Negozio giuridico", definition:"manifestazione di volontà diretta a produrre effetti giuridici"},
+  {term:"Rappresentanza", definition:"potere di agire in nome e per conto di un altro soggetto, detto rappresentato"},
+  {term:"Mandato", definition:"contratto con cui una parte si obbliga a compiere uno o più atti giuridici per conto dell'altra"},
+  {term:"Donazione", definition:"contratto con cui un soggetto arricchisce un altro per spirito di liberalità, senza ricevere alcun corrispettivo"},
+  {term:"Locazione", definition:"contratto con cui una parte concede il godimento di un bene a un'altra, dietro corrispettivo, per un tempo determinato"},
+  {term:"Compravendita", definition:"contratto con cui una parte trasferisce la proprietà di un bene, o un altro diritto, verso il pagamento di un prezzo"},
+  {term:"Fideiussione", definition:"contratto con cui un soggetto garantisce l'adempimento di un'obbligazione altrui, obbligandosi personalmente verso il creditore"},
+  {term:"Comodato", definition:"contratto con cui una parte consegna un bene mobile o immobile a un'altra affinché se ne serva gratuitamente, con l'obbligo di restituirlo"},
+  {term:"Persona fisica", definition:"individuo umano, in quanto soggetto naturale di diritto"},
+  {term:"Interdizione", definition:"stato in cui viene collocata, tramite provvedimento del giudice, una persona maggiorenne affetta da abituale infermità di mente, con conseguente incapacità legale"},
+  {term:"Codice civile italiano", definition:"corpo normativo che disciplina i rapporti tra privati, entrato in vigore in Italia nel 1942"},
+  {term:"Testamento", definition:"atto con cui un soggetto dispone, per il tempo successivo alla propria morte, dei propri beni o diritti"}
+];
+
+const GLOSSARY_ECONOMIA_POLITICA = [
+  {term:"Legge della domanda", definition:"principio secondo cui, a parità di altre condizioni, la quantità domandata di un bene diminuisce al crescere del suo prezzo"},
+  {term:"Legge dell'offerta", definition:"principio secondo cui, a parità di altre condizioni, la quantità offerta di un bene aumenta al crescere del suo prezzo"},
+  {term:"Equilibrio di mercato", definition:"situazione in cui la quantità domandata di un bene eguaglia la quantità offerta"},
+  {term:"Elasticità della domanda al prezzo", definition:"misura della variazione percentuale della quantità domandata rispetto alla variazione percentuale del prezzo"},
+  {term:"Concorrenza perfetta", definition:"modello di mercato con numerosi compratori e venditori, prodotto omogeneo e libertà di entrata e uscita"},
+  {term:"Monopolio", definition:"mercato in cui un solo venditore offre il bene, potendo influenzare il prezzo di vendita"},
+  {term:"Oligopolio", definition:"mercato dominato da un numero ristretto di imprese, fortemente interdipendenti tra loro"},
+  {term:"Concorrenza monopolistica", definition:"mercato con molte imprese che offrono prodotti simili ma differenziati tra loro"},
+  {term:"PIL (Prodotto Interno Lordo)", definition:"valore di mercato di tutti i beni e servizi finali prodotti in un paese in un determinato periodo"},
+  {term:"PIL reale", definition:"PIL calcolato a prezzi costanti, corretto per l'effetto dell'inflazione"},
+  {term:"Inflazione", definition:"aumento generale e persistente del livello dei prezzi di un'economia"},
+  {term:"Deflazione", definition:"diminuzione generale e persistente del livello dei prezzi di un'economia"},
+  {term:"Tasso di disoccupazione", definition:"rapporto tra le persone in cerca di occupazione e la forza lavoro totale"},
+  {term:"Politica fiscale", definition:"insieme delle decisioni di spesa pubblica e tassazione adottate dal Governo"},
+  {term:"Politica monetaria", definition:"insieme delle decisioni su tassi di interesse e offerta di moneta adottate dalla Banca Centrale"},
+  {term:"Costo opportunità", definition:"valore della migliore alternativa a cui si rinuncia effettuando una determinata scelta"},
+  {term:"Surplus del consumatore", definition:"differenza tra la disponibilità a pagare del consumatore e il prezzo effettivamente pagato"},
+  {term:"Surplus del produttore", definition:"differenza tra il prezzo di vendita ricevuto e il prezzo minimo che il produttore sarebbe stato disposto ad accettare"},
+  {term:"Esternalità negativa", definition:"costo imposto a soggetti terzi non coinvolti in una transazione economica"},
+  {term:"Beni pubblici", definition:"beni caratterizzati da non escludibilità e non rivalità nel consumo"},
+  {term:"Bilancia dei pagamenti", definition:"registrazione delle transazioni economiche di un paese con il resto del mondo in un dato periodo"},
+  {term:"Tasso di cambio", definition:"prezzo di una valuta espresso in termini di un'altra valuta"},
+  {term:"Debito pubblico", definition:"ammontare complessivo dei prestiti contratti nel tempo dallo Stato e non ancora rimborsati"},
+  {term:"Disavanzo pubblico", definition:"differenza negativa tra entrate e uscite pubbliche registrata in un singolo anno"},
+  {term:"Domanda aggregata", definition:"somma di consumi, investimenti, spesa pubblica ed esportazioni nette in un'economia"},
+  {term:"Moneta", definition:"strumento che svolge le funzioni di mezzo di scambio, unità di conto e riserva di valore"},
+  {term:"Tasso di interesse reale", definition:"tasso di interesse nominale al netto del tasso di inflazione"},
+  {term:"Curva di Phillips", definition:"relazione, ipotizzata nel breve periodo, tra tasso di inflazione e tasso di disoccupazione"},
+  {term:"Moltiplicatore keynesiano", definition:"effetto amplificato di una variazione della spesa autonoma sul reddito nazionale complessivo"},
+  {term:"Rendimenti di scala crescenti", definition:"situazione in cui un aumento proporzionale di tutti gli input genera un aumento più che proporzionale dell'output"},
+  {term:"Banca Centrale Europea (BCE)", definition:"istituzione che conduce la politica monetaria dell'area euro con l'obiettivo primario della stabilità dei prezzi"},
+  {term:"Domanda elastica", definition:"domanda per cui una variazione percentuale del prezzo genera una variazione percentuale più che proporzionale della quantità domandata"},
+  {term:"Stagflazione", definition:"situazione di coesistenza tra elevata inflazione e stagnazione economica"},
+  {term:"PIL nominale", definition:"PIL calcolato ai prezzi correnti dell'anno di riferimento, senza correzione per l'inflazione"},
+  {term:"Protezionismo", definition:"insieme di misure, come dazi e quote, volte a proteggere la produzione nazionale dalla concorrenza estera"},
+  {term:"Libero scambio", definition:"assenza di barriere doganali agli scambi commerciali tra paesi"},
+  {term:"Investimenti (in macroeconomia)", definition:"spesa delle imprese per l'acquisto di beni capitali destinati alla produzione futura"},
+  {term:"Risparmio", definition:"quota di reddito non destinata al consumo corrente"},
+  {term:"Bene sostituto", definition:"bene che può essere utilizzato al posto di un altro per soddisfare lo stesso bisogno"},
+  {term:"Bene complementare", definition:"bene il cui consumo è associato a quello di un altro bene, tale per cui la domanda dell'uno influenza quella dell'altro"}
+];
+
+const GLOSSARY_STORIA_ECONOMICA = [
+  {term:"Rivoluzione Industriale", definition:"processo di trasformazione economica e tecnologica avviato in Inghilterra nella seconda metà del XVIII secolo"},
+  {term:"Macchina a vapore", definition:"innovazione tecnologica chiave della prima Rivoluzione Industriale, perfezionata da James Watt"},
+  {term:"Sistema feudale", definition:"organizzazione sociale ed economica medievale basata su un rapporto di vassallaggio e sulla concessione di terre"},
+  {term:"Mercantilismo", definition:"dottrina economica, diffusa tra XVI e XVIII secolo, secondo cui la ricchezza di una nazione dipende dall'accumulo di metalli preziosi e da un saldo commerciale attivo"},
+  {term:"Rivoluzione agricola", definition:"miglioramento delle tecniche agricole che, aumentando la produttività, liberò manodopera destinata all'industria"},
+  {term:"Sistema di fabbrica", definition:"modello produttivo che concentra lavoratori e macchinari in un unico stabilimento"},
+  {term:"Gold standard", definition:"sistema monetario in cui la valuta nazionale è convertibile in una quantità fissa di oro"},
+  {term:"Grande Depressione", definition:"grave crisi economica mondiale innescata dal crollo della borsa di Wall Street nel 1929"},
+  {term:"New Deal", definition:"programma di riforme economiche varato dal presidente Roosevelt per contrastare la Grande Depressione"},
+  {term:"Accordi di Bretton Woods", definition:"accordi del 1944 che istituirono un nuovo sistema monetario internazionale e diedero vita a FMI e Banca Mondiale"},
+  {term:"Piano Marshall", definition:"programma statunitense di aiuti economici per la ricostruzione dell'Europa nel secondo dopoguerra"},
+  {term:"Comunità Economica Europea (CEE)", definition:"organizzazione economica europea istituita con il Trattato di Roma del 1957"},
+  {term:"Colonialismo", definition:"espansione territoriale delle potenze europee, motivata anche dalla ricerca di materie prime e nuovi mercati"},
+  {term:"Seconda Rivoluzione Industriale", definition:"fase di innovazione tecnologica di fine Ottocento, associata a elettricità, acciaio, chimica e motore a scoppio"},
+  {term:"Taylorismo/fordismo", definition:"modello di organizzazione scientifica del lavoro basato sulla catena di montaggio"},
+  {term:"Keynesismo", definition:"corrente di pensiero economico che promuove l'intervento dello Stato in economia, affermatasi dopo la Grande Depressione"},
+  {term:"Triangolo industriale", definition:"area (Milano-Torino-Genova) in cui si concentrò l'industrializzazione italiana tra Ottocento e Novecento"},
+  {term:"Miracolo economico italiano", definition:"periodo di forte crescita economica dell'Italia, collocato principalmente tra gli anni '50 e '60 del Novecento"},
+  {term:"Crisi petrolifera del 1973", definition:"shock economico causato dall'embargo dei paesi OPEC in seguito alla guerra del Kippur"},
+  {term:"Globalizzazione", definition:"crescente integrazione dei mercati mondiali di beni, capitali e lavoro"},
+  {term:"Rivoluzione demografica", definition:"forte crescita della popolazione europea tra Settecento e Ottocento, dovuta soprattutto al calo della mortalità"},
+  {term:"Compagnie delle Indie", definition:"società commerciali che godevano di privilegi statali per il commercio con le colonie"},
+  {term:"Crisi del debito sovrano europeo", definition:"crisi finanziaria del 2010-2012 che colpì in particolare Grecia, Portogallo, Irlanda, Spagna e Italia"},
+  {term:"Euro", definition:"moneta unica europea, introdotta come moneta scritturale nel 1999 e come contante in circolazione nel 2002"},
+  {term:"Liberismo economico", definition:"dottrina, associata ad Adam Smith, secondo cui il mercato si autoregola tramite la cosiddetta 'mano invisibile'"},
+  {term:"Protezionismo commerciale", definition:"politica economica basata su dazi e quote per proteggere la produzione nazionale dalla concorrenza estera"},
+  {term:"Rivoluzione dei trasporti", definition:"trasformazione dei trasporti nell'Ottocento, segnata soprattutto dalla diffusione della ferrovia"},
+  {term:"Nixon shock", definition:"decisione del 1971 con cui il presidente Nixon sospese la convertibilità del dollaro statunitense in oro"},
+  {term:"Era Meiji", definition:"periodo di modernizzazione e industrializzazione del Giappone, avviato nella seconda metà del XIX secolo"},
+  {term:"Terza Rivoluzione Industriale", definition:"fase di trasformazione economica associata alla diffusione di computer ed elettronica dalla seconda metà del Novecento"},
+  {term:"Trattato di Maastricht", definition:"trattato del 1992 che istituì l'Unione Europea e pose le basi per l'Unione Economica e Monetaria"},
+  {term:"Corporazioni medievali", definition:"associazioni di artigiani o mercanti che regolavano una determinata attività economica"},
+  {term:"Rivoluzione commerciale del basso Medioevo", definition:"ripresa dei traffici commerciali europei, favorita anche dalla nascita delle repubbliche marinare"},
+  {term:"Stagflazione", definition:"coesistenza di alta inflazione e stagnazione economica, tipica degli anni '70 del Novecento"},
+  {term:"Boom economico", definition:"fase di forte e rapida crescita economica di un paese"},
+  {term:"Repubbliche marinare", definition:"città-stato italiane, come Venezia, Genova, Pisa e Amalfi, che prosperarono grazie al commercio marittimo nel Medioevo"},
+  {term:"Proletariato industriale", definition:"classe sociale di lavoratori salariati sorta con la diffusione dell'industria nell'Ottocento"},
+  {term:"Urbanizzazione", definition:"processo di crescita delle città, favorito dallo sviluppo industriale"},
+  {term:"Embargo petrolifero del 1973", definition:"decisione dei paesi OPEC di limitare le esportazioni di petrolio verso i paesi filo-israeliani"},
+  {term:"Rivoluzione informatica", definition:"trasformazione economica legata alla diffusione di computer e telecomunicazioni dalla seconda metà del Novecento"}
+];
+
+const GLOSSARY_TEORIA_GOVERNO_IMPRESA = [
+  {term:"Teoria dei costi di transazione", definition:"teoria, elaborata da Coase e Williamson, che spiega l'esistenza dell'impresa come alternativa al mercato per minimizzare i costi di transazione"},
+  {term:"Corporate Governance", definition:"insieme di regole, organi e meccanismi di direzione e controllo dell'impresa"},
+  {term:"Sistema di governance tradizionale", definition:"modello, tipico in Italia, con Assemblea, Consiglio di Amministrazione e Collegio Sindacale"},
+  {term:"Sistema dualistico", definition:"modello di governance basato su Consiglio di Sorveglianza e Consiglio di Gestione"},
+  {term:"Sistema monistico", definition:"modello di governance con un Consiglio di Amministrazione e un Comitato di controllo interno costituito al suo interno"},
+  {term:"Teoria degli stakeholder", definition:"teoria secondo cui l'impresa deve considerare gli interessi di tutti i portatori di interesse, non solo degli azionisti"},
+  {term:"Teoria shareholder", definition:"teoria secondo cui l'obiettivo primario dell'impresa è la massimizzazione del valore per gli azionisti"},
+  {term:"Agency theory", definition:"teoria che studia il potenziale conflitto di interessi tra principale, il proprietario, e agente, il manager"},
+  {term:"Cinque forze di Porter", definition:"modello che analizza la concorrenza in un settore considerando rivalità, nuovi entranti, prodotti sostitutivi e potere contrattuale di fornitori e clienti"},
+  {term:"Catena del valore", definition:"modello che scompone l'impresa in attività primarie e di supporto per individuare le fonti del vantaggio competitivo"},
+  {term:"Vantaggio competitivo di costo", definition:"vantaggio ottenuto producendo a costi inferiori rispetto ai concorrenti"},
+  {term:"Vantaggio competitivo di differenziazione", definition:"vantaggio ottenuto offrendo un prodotto o servizio percepito come unico o superiore dal mercato"},
+  {term:"Analisi SWOT", definition:"strumento che valuta punti di forza, punti di debolezza, opportunità e minacce di un'impresa"},
+  {term:"Mission aziendale", definition:"definizione della ragion d'essere e dello scopo fondamentale dell'impresa"},
+  {term:"Vision aziendale", definition:"definizione dell'aspirazione futura di lungo periodo dell'impresa"},
+  {term:"Responsabilità Sociale d'Impresa (CSR)", definition:"integrazione volontaria di preoccupazioni sociali e ambientali nelle attività e nelle relazioni dell'impresa"},
+  {term:"Consiglio di Amministrazione", definition:"organo a cui è affidata la gestione dell'impresa e la definizione degli indirizzi strategici"},
+  {term:"Amministratori indipendenti", definition:"membri del Consiglio di Amministrazione privi di legami significativi con la proprietà o il management, a garanzia di trasparenza"},
+  {term:"Collegio Sindacale", definition:"organo di controllo sulla gestione e sul rispetto della legge e dello statuto"},
+  {term:"Separazione tra proprietà e controllo", definition:"fenomeno tipico delle grandi società ad azionariato diffuso, in cui proprietà e gestione non coincidono"},
+  {term:"Strategie di diversificazione", definition:"strategie di espansione dell'impresa in nuovi settori o mercati rispetto a quello originario"},
+  {term:"Integrazione verticale", definition:"strategia di acquisizione di fasi della filiera produttiva situate a monte o a valle rispetto all'attività originaria"},
+  {term:"Joint venture", definition:"alleanza strategica tra imprese finalizzata a condividere risorse e rischi per il raggiungimento di un obiettivo comune"},
+  {term:"Ciclo di vita dell'impresa", definition:"insieme delle fasi di nascita, sviluppo, maturità e declino, o eventuale rilancio, attraversate da un'impresa"},
+  {term:"Capitale intellettuale", definition:"insieme di capitale umano, organizzativo e relazionale posseduto da un'impresa"},
+  {term:"Governance familiare", definition:"modello di governance in cui proprietà, gestione e famiglia tendono a sovrapporsi"},
+  {term:"OPA (Offerta Pubblica di Acquisto)", definition:"proposta di acquisto di azioni rivolta a tutti gli azionisti di una società quotata"},
+  {term:"Knowledge management", definition:"gestione della conoscenza come risorsa strategica dell'impresa"},
+  {term:"Resource-Based View", definition:"teoria secondo cui il vantaggio competitivo deriva dalle risorse e competenze uniche dell'impresa"},
+  {term:"Core competences", definition:"capacità distintive, difficilmente imitabili, che generano un vantaggio competitivo duraturo"},
+  {term:"Codice di autodisciplina", definition:"insieme di principi e buone pratiche di governance ad adesione volontaria per le società quotate"},
+  {term:"Principio comply or explain", definition:"principio per cui una società rispetta il codice di governance oppure spiega pubblicamente le ragioni della deroga"},
+  {term:"Amministratori esecutivi", definition:"amministratori dotati di deleghe operative nella gestione quotidiana dell'impresa"},
+  {term:"Amministratori non esecutivi", definition:"amministratori privi di deleghe operative, con funzioni di vigilanza e indirizzo strategico"},
+  {term:"Indici di bilancio", definition:"strumenti quantitativi, come ROE e ROI, utilizzati per valutare redditività, liquidità e solidità dell'impresa"},
+  {term:"Struttura organizzativa", definition:"insieme delle regole e dei ruoli che definiscono le relazioni tra le diverse parti di un'impresa"},
+  {term:"Ambiente competitivo", definition:"insieme dei fattori esterni, come concorrenti, clienti e fornitori, che influenzano le scelte strategiche dell'impresa"},
+  {term:"Pianificazione strategica", definition:"processo di definizione degli obiettivi di lungo periodo e delle azioni necessarie per raggiungerli"},
+  {term:"Governance delle società quotate", definition:"insieme di regole di governo societario applicabili alle imprese i cui titoli sono negoziati in un mercato regolamentato"},
+  {term:"Diversificazione correlata", definition:"strategia di diversificazione verso settori affini a quello originario dell'impresa, in cui è possibile condividere risorse e competenze"}
+];
+
+/* Generatore infinito basato su termine/definizione: pesca un concetto e
+   costruisce 3 distrattori casuali dallo stesso glossario, alternando la
+   direzione della domanda (dal termine alla definizione o viceversa). */
+function genGlossaryQuestion(glossary){
+  const idx = randInt(0, glossary.length - 1);
+  const item = glossary[idx];
+  const direction = Math.random() < 0.5 ? 'term2def' : 'def2term';
+
+  const distractorIdxs = new Set();
+  while(distractorIdxs.size < 3){
+    const j = randInt(0, glossary.length - 1);
+    if(j !== idx) distractorIdxs.add(j);
+  }
+  const distractorItems = [...distractorIdxs].map(j => glossary[j]);
+
+  let q, correctText, optionTexts;
+  if(direction === 'term2def'){
+    q = `Che cosa si intende, in questa materia, per "${item.term}"?`;
+    correctText = item.definition;
+    optionTexts = distractorItems.map(d => d.definition);
+  } else {
+    const defCapitalized = item.definition.charAt(0).toUpperCase() + item.definition.slice(1);
+    q = `A quale concetto corrisponde questa definizione? "${defCapitalized}"`;
+    correctText = item.term;
+    optionTexts = distractorItems.map(d => d.term);
+  }
+
+  const all = shuffle([correctText, ...optionTexts]);
+  const correct = all.indexOf(correctText);
+  return {
+    topic: "Glossario",
+    q, options: all, correct,
+    explain: `${item.term}: ${item.definition}.`
+  };
+}
+
+function makeGlossaryGenerator(glossary){
+  return function(){ return genGlossaryQuestion(glossary); };
+}
+
+/* =========================================================
+   CONFIGURAZIONE MATERIE
+   ========================================================= */
+const SUBJECTS = {
+  statistica: { name:"Statistica", icon:"📊", questions:Q_STATISTICA, generatorKind:"numeric", generators:STAT_GENERATORS },
+  economia_aziendale: { name:"Economia Aziendale", icon:"🏢", questions:Q_ECONOMIA_AZIENDALE, generatorKind:"glossary", generators:[makeGlossaryGenerator(GLOSSARY_ECONOMIA_AZIENDALE)] },
+  diritto_privato: { name:"Diritto Privato", icon:"⚖️", questions:Q_DIRITTO_PRIVATO, generatorKind:"glossary", generators:[makeGlossaryGenerator(GLOSSARY_DIRITTO_PRIVATO)] },
+  economia_politica: { name:"Economia Politica", icon:"📈", questions:Q_ECONOMIA_POLITICA, generatorKind:"glossary", generators:[makeGlossaryGenerator(GLOSSARY_ECONOMIA_POLITICA)] },
+  storia_economica: { name:"Storia Economica", icon:"📜", questions:Q_STORIA_ECONOMICA, generatorKind:"glossary", generators:[makeGlossaryGenerator(GLOSSARY_STORIA_ECONOMICA)] },
+  teoria_governo_impresa: { name:"Teoria e Governo dell'Impresa", icon:"🏛️", questions:Q_TEORIA_GOVERNO_IMPRESA, generatorKind:"glossary", generators:[makeGlossaryGenerator(GLOSSARY_TEORIA_GOVERNO_IMPRESA)] }
+};
 
 /* =========================================================
    STATO E LOGICA APP
    ========================================================= */
+let currentSubjectKey = null;
+let subject = null;
 let mode = 'all';
 let isInfinite = false;
 let order = [];
@@ -471,24 +890,62 @@ let currentQ = null;
 
 const mainCard = document.getElementById('mainCard');
 const statsPanel = document.getElementById('statsPanel');
+const subtitleEl = document.getElementById('subtitleText');
 
-function renderStart(){
+function setSubtitle(text){ subtitleEl.textContent = text; }
+
+function renderSubjectSelect(){
   statsPanel.style.display = 'none';
+  setSubtitle("6 materie · banca fissa + esercizi generati (Statistica)");
+  const cards = Object.entries(SUBJECTS).map(([key,s])=>`
+    <button class="subject-card" data-key="${key}">
+      <span class="subject-icon">${s.icon}</span>
+      <span class="subject-name">${s.name}</span>
+      <span class="subject-count">${s.questions.length} domande + infiniti</span>
+    </button>
+  `).join('');
   mainCard.innerHTML = `
     <div class="start-screen">
-      <h2>Pronto per esercitarti?</h2>
-      <p>Scegli tra la banca di domande teoriche a risposta multipla oppure il generatore infinito di esercizi numerici (media, mediana, probabilità, z-score, regressione, IC...), con numeri diversi ogni volta.</p>
-      <div class="mode-grid">
-        <button class="mode-btn active" data-mode="all"><b>Banca completa</b>45 domande teoriche</button>
-        <button class="mode-btn" data-mode="15"><b>Prova rapida</b>15 domande teoriche</button>
-        <button class="mode-btn" data-mode="gen"><b>Esercizi infiniti</b>solo calcolo, generati al volo</button>
-        <button class="mode-btn" data-mode="mix"><b>Sessione mista infinita</b>teoria + calcolo, senza fine</button>
-      </div>
-      <div class="result-actions">
-        <button class="btn-primary" id="startBtn">Inizia →</button>
-      </div>
+      <h2>Scegli la materia</h2>
+      <p>Quiz di autoesercitazione a risposta multipla per gli esami universitari Pegaso. Seleziona una materia per iniziare.</p>
+      <div class="subject-grid">${cards}</div>
     </div>
   `;
+  document.querySelectorAll('.subject-card').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      currentSubjectKey = btn.dataset.key;
+      subject = SUBJECTS[currentSubjectKey];
+      renderModeSelect();
+    });
+  });
+}
+
+function renderModeSelect(){
+  statsPanel.style.display = 'none';
+  selectedMode = 'all';
+  setSubtitle(`${subject.name} · ${subject.questions.length} domande + generatore infinito`);
+
+  const isNumeric = subject.generatorKind === 'numeric';
+  const genLabel = isNumeric ? "solo calcolo, generati al volo" : "definizioni generate al volo, con distrattori casuali";
+  const mixLabel = isNumeric ? "teoria + calcolo, senza fine" : "banca fissa + definizioni generate, senza fine";
+
+  let modesHtml = `
+    <button class="mode-btn active" data-mode="all"><b>Test completo</b>${subject.questions.length} domande teoriche</button>
+    <button class="mode-btn" data-mode="15"><b>Prova rapida</b>15 domande teoriche</button>
+    <button class="mode-btn" data-mode="gen"><b>Esercizi infiniti</b>${genLabel}</button>
+    <button class="mode-btn" data-mode="mix"><b>Sessione mista infinita</b>${mixLabel}</button>
+  `;
+
+  mainCard.innerHTML = `
+    <div class="start-screen">
+      <div class="back-row"><button class="back-link" id="backToSubjects">← Cambia materia</button></div>
+      <h2>${subject.icon} ${subject.name}</h2>
+      <p>Scegli come vuoi esercitarti su questa materia.</p>
+      <div class="mode-grid">${modesHtml}</div>
+      <div class="result-actions"><button class="btn-primary" id="startBtn">Inizia →</button></div>
+    </div>
+  `;
+
   document.querySelectorAll('.mode-btn').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       document.querySelectorAll('.mode-btn').forEach(b=>b.classList.remove('active'));
@@ -496,35 +953,40 @@ function renderStart(){
       selectedMode = btn.dataset.mode;
     });
   });
+  document.getElementById('backToSubjects').addEventListener('click', renderSubjectSelect);
   document.getElementById('startBtn').addEventListener('click', startQuiz);
 }
 
+function generateProceduralQuestion(){
+  return randChoice(subject.generators)();
+}
+
 function pickNextQuestion(){
-  if(!isInfinite){
-    return order[current];
-  }
-  if(mode === 'gen'){
+  if(!isInfinite) return order[current];
+  if(mode === 'gen') return generateProceduralQuestion();
+  if(mode === 'mix'){
+    if(Math.random() < 0.5){
+      if(fixedCyclePos >= fixedCycleOrder.length){ fixedCycleOrder = shuffle(subject.questions); fixedCyclePos = 0; }
+      return fixedCycleOrder[fixedCyclePos++];
+    }
     return generateProceduralQuestion();
   }
-  // mix: 50% banca fissa (ciclica), 50% generata
-  if(Math.random() < 0.5){
-    if(fixedCyclePos >= fixedCycleOrder.length){ fixedCycleOrder = shuffle(QUESTIONS); fixedCyclePos = 0; }
-    return fixedCycleOrder[fixedCyclePos++];
-  }
-  return generateProceduralQuestion();
+  // mode === 'infinite' (ciclo continuo sulla banca fissa, senza generatore)
+  if(fixedCyclePos >= fixedCycleOrder.length){ fixedCycleOrder = shuffle(subject.questions); fixedCyclePos = 0; }
+  return fixedCycleOrder[fixedCyclePos++];
 }
 
 function startQuiz(){
   mode = selectedMode;
-  isInfinite = (mode === 'gen' || mode === 'mix');
+  isInfinite = (mode === 'gen' || mode === 'mix' || mode === 'infinite');
   current = 0; questionNumber = 1; answered = 0; correctCount = 0; wrongCount = 0; streak = 0; wrongLog = [];
 
   if(!isInfinite){
-    let pool = shuffle(QUESTIONS);
+    let pool = shuffle(subject.questions);
     if(mode !== 'all') pool = pool.slice(0, parseInt(mode,10));
     order = pool;
   } else {
-    fixedCycleOrder = shuffle(QUESTIONS);
+    fixedCycleOrder = shuffle(subject.questions);
     fixedCyclePos = 0;
   }
 
@@ -576,7 +1038,7 @@ function renderQuestion(){
   mainCard.innerHTML = `
     <div class="progress-wrap">${progressHtml}</div>
     <div class="question-area">
-      <div class="q-eyebrow"><span class="topic">${item.topic}</span></div>
+      <div class="q-eyebrow"><span class="topic">${item.topic}</span><span class="subj">${subject.icon} ${subject.name}</span></div>
       <p class="q-text">${item.q}</p>
       <div class="options">${optionsHtml}</div>
       <div class="explain" id="explainBox"><strong>Spiegazione —</strong> <span id="explainText"></span></div>
@@ -648,19 +1110,21 @@ function renderResult(){
   mainCard.innerHTML = `
     <div class="result">
       <p class="big">${correctCount}<span>/${totalAsked}</span></p>
-      <p class="verdict">${verdict} · ${pct}% di accuratezza</p>
+      <p class="verdict">${subject.icon} ${subject.name} · ${verdict} · ${pct}% di accuratezza</p>
       <div class="result-actions">
         <button class="btn-primary" id="retryBtn">Rifai (stessa modalità)</button>
-        <button class="btn-secondary" id="homeBtn">Torna alla home</button>
+        <button class="btn-secondary" id="modeBtn">Cambia modalità</button>
+        <button class="btn-secondary" id="subjectBtn">Cambia materia</button>
       </div>
       ${reviewHtml}
     </div>
   `;
   document.getElementById('retryBtn').addEventListener('click', startQuiz);
-  document.getElementById('homeBtn').addEventListener('click', renderStart);
+  document.getElementById('modeBtn').addEventListener('click', renderModeSelect);
+  document.getElementById('subjectBtn').addEventListener('click', renderSubjectSelect);
 }
 
-renderStart();
+renderSubjectSelect();
 </script>
 </body>
 </html>
