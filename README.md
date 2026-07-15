@@ -4,8 +4,12 @@ Sito unico di autoesercitazione a risposta multipla (4 opzioni) per più esami u
 
 ## Novità di questa versione
 
+- **56 nuove domande di Statistica basate sulla TUA dispensa** (Pasquale Pavone / Paolo Sciattella / Veronica Distefano, testo Borra-Di Ciaccio), ora con copertura completa di entrambe le parti del corso:
+  - **Parte 1 (statistica descrittiva)**: media aritmetica/ponderata, media geometrica, trimmed mean, mediana, varianza, deviazione standard, coefficiente di variazione, teoremi di Chebyshev e Markov, standardizzazione, concentrazione e indice di Gini, curva di Lorenz, correlazione lineare, regressione ai minimi quadrati.
+  - **Parte 2 (probabilità e inferenza)**: concetti di probabilità (classica/frequentista/soggettivista), algebra degli eventi, probabilità condizionata e indipendenza, teorema di Bayes, distribuzioni Binomiale/Poisson/Uniforme/Normale, teorema del limite centrale, proprietà degli stimatori (correttezza, errore quadratico medio), errori di I e II tipo, procedura di verifica delle ipotesi, test per la media, campionamento casuale semplice e stratificato.
+  - Le domande usano **gli stessi esempi numerici, dataset ed esercizi presenti nelle tue slide** (es. l'esercizio dei copertoni A/B/C, il rapporto di concentrazione R=0,45, la retta di regressione ŷ=0,595+1,255X, l'esempio Bayes del test diagnostico con P=0,33, il centralino telefonico con la Poisson λ=2, il confronto tra stimatori T1/T2, l'esempio del farmaco per gli errori di I/II tipo).
 - **Revisione errori**: controllo automatico su tutte le domande (campi mancanti, opzioni duplicate, indice della risposta corretta fuori range, difficoltà non valida) e ricerca di domande duplicate. Sono state trovate e corrette **6 domande ripetute per errore** in due lotti diversi (stesso testo, opzioni riformulate); sono state rimosse e sostituite con domande nuove su argomenti non ancora trattati.
-- **Ulteriore ampliamento**: la banca fissa è cresciuta ancora, per un totale di **529 domande** (partite da 220).
+- **Ulteriore ampliamento**: la banca fissa è cresciuta ancora, per un totale di **585 domande** (partite da 220).
 - **Tre livelli di difficoltà** (🟢 Facile, 🟡 Media, 🔴 Difficile) su ogni domanda della banca fissa, filtrabili dalla schermata di scelta modalità.
 - **Modalità progressiva**: un modo di esercitarsi che percorre l'intera banca di domande partendo dalle più facili e arrivando gradualmente alle più difficili.
 - **Correzione del bias "risposta più lunga = corretta"**: in precedenza la risposta esatta era anche l'opzione più lunga in oltre l'85% dei casi in ogni materia — un pattern facilmente individuabile senza sapere davvero la risposta. Ora, dopo un ribilanciamento automatico dei distrattori (resi più articolati dove erano troppo corti), la risposta corretta risulta la più lunga in meno del 15% dei casi per materia, in linea con quanto ci si aspetterebbe per puro caso (25% con 4 opzioni).
@@ -16,14 +20,14 @@ Sito unico di autoesercitazione a risposta multipla (4 opzioni) per più esami u
 
 | Materia | Domande teoriche | Esercizi infiniti generati |
 |---|---|---|
-| 📊 Statistica | 120 (40 facili · 45 medie · 35 difficili) | ✅ calcolo (15 modelli: media, mediana, probabilità, z-score, regressione, IC, IQR, varianza campionaria, media ponderata...) |
+| 📊 Statistica | 176 (51 facili · 78 medie · 47 difficili, incluse 56 basate sulla tua dispensa, copertura completa parte 1 e 2) | ✅ calcolo (15 modelli: media, mediana, probabilità, z-score, regressione, IC, IQR, varianza campionaria, media ponderata...) |
 | 🏢 Economia Aziendale | 88 (31 facili · 33 medie · 24 difficili) | ✅ definizioni (56 termini, generate con distrattori casuali) |
 | ⚖️ Diritto Privato | 78 (24 facili · 29 medie · 25 difficili) | ✅ definizioni (56 termini) |
 | 📈 Economia Politica | 74 (25 facili · 29 medie · 20 difficili) | ✅ definizioni (55 termini) |
 | 📜 Storia Economica | 70 (21 facili · 26 medie · 23 difficili) | ✅ definizioni (55 termini) |
 | 🏛️ Teoria e Governo dell'Impresa | 68 (23 facili · 23 medie · 22 difficili) | ✅ definizioni (55 termini) |
 
-**Totale: 529 domande nella banca fissa** (partite da 220), più gli esercizi infiniti generati al volo per ogni materia, sempre disponibili in ogni modalità.
+**Totale: 585 domande nella banca fissa** (partite da 220), più gli esercizi infiniti generati al volo per ogni materia, sempre disponibili in ogni modalità.
 
 Per ogni materia, dalla home si sceglie la modalità: test completo, prova rapida (15 domande), **modalità progressiva** (facile → media → difficile), esercizi infiniti (generati al volo, senza mai finire) oppure una sessione mista infinita che alterna banca fissa ed esercizi generati. Il filtro per difficoltà si applica a test completo, prova rapida e sessione mista/infinita; la modalità progressiva usa sempre l'intera banca, in ordine crescente di difficoltà. Un pulsante "Termina e vedi il punteggio" permette di chiudere la sessione infinita quando si vuole.
 
